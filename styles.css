@@ -86,32 +86,97 @@ img.brand-mark{background:transparent}
 @media (max-width:900px){.nav-links{display:none}.nav-inner{grid-template-columns:auto 1fr}}
 
 /* ---------- Hero ---------- */
-.hero{min-height:100vh;padding:160px 32px 80px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:0;background:
-  radial-gradient(1200px 600px at 50% 0%, rgba(28,22,18,.05), transparent 60%),
-  linear-gradient(transparent 0 49%, rgba(28,22,18,.04) 49.5% 50.5%, transparent 51% 100%);
-  background-size:100% 100%,100% 40px;pointer-events:none}
-.hero-meta{font-family:var(--f-mono);font-size:11px;letter-spacing:.3em;color:var(--muted);display:flex;gap:16px;margin-bottom:40px;flex-wrap:wrap;justify-content:center}
-.dot{opacity:.4}
-.hero-title{font-family:var(--f-display);font-weight:300;font-size:clamp(56px,12vw,180px);line-height:.9;letter-spacing:-.03em;margin-bottom:40px}
-.hero-title .line{display:block;overflow:hidden}
-.hero-title .italic{font-style:italic;font-weight:400}
-.hero-sub{font-family:var(--f-mono);font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:32px}
-.hero-tags{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:64px}
-.tag{padding:8px 16px;border:1px solid var(--line-strong);border-radius:999px;font-family:var(--f-mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase}
-.hero-quote{font-family:var(--f-display);font-style:italic;font-size:clamp(18px,2.2vw,28px);font-weight:300;max-width:720px;line-height:1.4;color:rgba(28,22,18,.78)}
-.hero-quote span{display:block}
-.scroll-cue{position:absolute;bottom:40px;display:flex;flex-direction:column;align-items:center;gap:12px;font-family:var(--f-mono);font-size:10px;letter-spacing:.3em;color:var(--muted)}
-.cue-line{width:1px;height:60px;background:linear-gradient(180deg,var(--ink),transparent);animation:cue 2s var(--ease) infinite}
-@keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.hero{min-height:100vh;padding:160px 32px 80px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;overflow:hidden;perspective:1200px}
 
-/* Reveal animations */
-.reveal{display:inline-block;transform:translateY(120%);opacity:0;animation:reveal 1.1s var(--ease) forwards}
-.line .reveal{transform:translateY(120%)}
-.delay-1{animation-delay:.4s}
-.delay-2{animation-delay:.6s}
-.delay-3{animation-delay:.8s}
-@keyframes reveal{to{transform:translateY(0);opacity:1}}
+/* Cinematic letterbox bars */
+.letterbox{position:absolute;left:0;right:0;height:36px;background:var(--ink);z-index:4;transform-origin:center}
+.letterbox-top{top:0;animation:lbIn .9s var(--ease) .2s both}
+.letterbox-bottom{bottom:0;animation:lbIn .9s var(--ease) .2s both}
+@keyframes lbIn{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+
+/* Spotlight */
+.hero-spot{position:absolute;inset:0;pointer-events:none;z-index:1;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(28,22,18,.1),transparent 60%);transition:background .25s linear;mix-blend-mode:multiply}
+
+/* Viewfinder brackets */
+.viewfinder{position:absolute;inset:56px 32px;pointer-events:none;z-index:3}
+.viewfinder .vf{position:absolute;width:28px;height:28px;border:1px solid var(--ink);opacity:.55}
+.viewfinder .tl{top:0;left:0;border-right:none;border-bottom:none}
+.viewfinder .tr{top:0;right:0;border-left:none;border-bottom:none}
+.viewfinder .bl{bottom:0;left:0;border-right:none;border-top:none}
+.viewfinder .br{bottom:0;right:0;border-left:none;border-top:none}
+
+/* HUD corners */
+.hero-hud{position:absolute;z-index:5;font-family:var(--f-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg);display:flex;flex-direction:column;gap:4px;animation:hudIn 1s var(--ease) 1.1s both}
+.hero-hud .hud-label{opacity:.45}
+.hero-hud .hud-val{opacity:.85;letter-spacing:.16em}
+.hud-tl{top:60px;left:56px;text-align:left}
+.hud-tr{top:60px;right:56px;text-align:right;align-items:flex-end}
+.hud-bl{bottom:60px;left:56px;text-align:left}
+.hud-br{bottom:60px;right:56px;text-align:right;align-items:flex-end}
+.hud-tl::before,.hud-tr::before,.hud-bl::before,.hud-br::before{content:"";display:block;width:24px;height:1px;background:var(--ink);opacity:.4;margin-bottom:6px}
+.hud-tr::before,.hud-br::before{margin-left:auto}
+@keyframes hudIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* Title with split letters + parallax */
+.hero-title-wrap{position:relative;z-index:2;transform-style:preserve-3d;transition:transform .4s var(--ease);margin-bottom:32px}
+.hero-title{font-family:var(--f-display);font-weight:300;font-size:clamp(56px,12vw,180px);line-height:.9;letter-spacing:-.03em;transform-style:preserve-3d;will-change:transform}
+.hero-title .line{display:block;overflow:hidden;white-space:nowrap}
+.hero-title .italic{font-style:italic;font-weight:400}
+.hero-title .char{display:inline-block;transform:translateY(110%);opacity:0;animation:charIn .9s var(--ease) forwards;transition:transform .4s var(--ease),color .3s,font-style .3s}
+.hero-title .char:hover{transform:translateY(-6px) scale(1.05);color:var(--ink)}
+.hero-title .line.italic .char:hover{font-style:normal}
+.hero-title .line:not(.italic) .char:hover{font-style:italic}
+@keyframes charIn{to{transform:translateY(0);opacity:1}}
+
+/* Rotating discipline */
+.hero-disciplines{position:relative;z-index:2;margin-bottom:40px;display:flex;flex-direction:column;align-items:center;gap:24px}
+.disc-stage{position:relative;height:clamp(36px,5.5vw,72px);overflow:hidden;width:100%;max-width:900px}
+.disc-word{position:absolute;left:0;right:0;top:0;font-family:var(--f-display);font-style:italic;font-weight:300;font-size:clamp(28px,5vw,64px);letter-spacing:-.02em;color:rgba(28,22,18,.78);opacity:0;transform:translateY(60%);transition:opacity .55s var(--ease),transform .7s var(--ease)}
+.disc-word.is-active{opacity:1;transform:translateY(0)}
+.disc-word.is-exit{opacity:0;transform:translateY(-60%);transition:opacity .4s var(--ease),transform .5s var(--ease)}
+.disc-pills{list-style:none;display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.disc-pill{padding:8px 14px;border:1px solid var(--line-strong);border-radius:999px;font-family:var(--f-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--fg);transition:all .3s var(--ease);display:inline-flex;align-items:center;gap:8px;background:transparent}
+.disc-pill em{font-family:var(--f-display);font-style:italic;font-size:13px;letter-spacing:-.01em;opacity:.55;text-transform:none}
+.disc-pill:hover{border-color:var(--ink)}
+.disc-pill.is-active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.disc-pill.is-active em{opacity:.9;color:var(--paper)}
+
+.hero-quote{font-family:var(--f-display);font-style:italic;font-size:clamp(16px,2vw,24px);font-weight:300;max-width:680px;line-height:1.5;color:rgba(28,22,18,.72);position:relative;z-index:2;margin-bottom:32px}
+.hero-quote span{display:block}
+
+/* Magnetic scroll cue */
+.scroll-cue{position:absolute;bottom:64px;display:flex;flex-direction:column;align-items:center;gap:10px;font-family:var(--f-mono);font-size:10px;letter-spacing:.3em;color:var(--fg);z-index:5;transition:transform .3s var(--ease);padding:10px}
+.scroll-cue.magnet{transform:scale(1.22)}
+.cue-line{width:1px;height:50px;background:linear-gradient(180deg,var(--ink),transparent);animation:cue 2s var(--ease) infinite}
+
+/* Shutter flash */
+.shutter-flash{position:absolute;inset:0;background:var(--paper);opacity:0;pointer-events:none;z-index:10;transition:opacity 60ms ease-out}
+.shutter-flash.fire{animation:shutterFire .18s ease-out}
+@keyframes shutterFire{0%{opacity:0}20%{opacity:.9}100%{opacity:0}}
+
+/* Mobile hero adjustments */
+@media (max-width:768px){
+  .hero{padding:130px 20px 100px;perspective:800px}
+  .letterbox{height:22px}
+  .viewfinder{inset:40px 14px}
+  .hero-hud{font-size:8.5px;letter-spacing:.14em;gap:2px}
+  .hud-tl{top:40px;left:18px}
+  .hud-tr{top:40px;right:18px}
+  .hud-bl{bottom:40px;left:18px}
+  .hud-br{bottom:40px;right:18px}
+  .hud-tl::before,.hud-tr::before,.hud-bl::before,.hud-br::before{width:16px;margin-bottom:3px}
+  .hero-title{white-space:normal}
+  .hero-title .line{white-space:normal}
+  .disc-pills{gap:6px}
+  .disc-pill{padding:6px 10px;font-size:9px}
+  .disc-pill em{font-size:11px}
+  .scroll-cue{bottom:48px}
+}
+.hero-meta{font-family:var(--f-mono);font-size:11px;letter-spacing:.3em;color:var(--muted);display:flex;gap:16px;margin-bottom:40px;flex-wrap:wrap;justify-content:center;position:relative;z-index:2;animation:hudIn 1s var(--ease) .6s both}
+.dot{opacity:.4}
+.tag{padding:8px 16px;border:1px solid var(--line-strong);border-radius:999px;font-family:var(--f-mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase}
+
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 
 /* ---------- Section shell ---------- */
 .section{padding:160px 32px;max-width:1440px;margin:0 auto;position:relative}

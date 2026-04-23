@@ -56,6 +56,37 @@
 </nav>
 
 <header class="hero" id="top">
+  <!-- Cinematic letterbox bars -->
+  <div class="letterbox letterbox-top" aria-hidden="true"></div>
+  <div class="letterbox letterbox-bottom" aria-hidden="true"></div>
+
+  <!-- Cursor-reactive spotlight -->
+  <div class="hero-spot" id="heroSpot" aria-hidden="true"></div>
+
+  <!-- Viewfinder corner brackets -->
+  <div class="viewfinder" aria-hidden="true">
+    <span class="vf tl"></span><span class="vf tr"></span>
+    <span class="vf bl"></span><span class="vf br"></span>
+  </div>
+
+  <!-- HUD readouts (like a camera display) -->
+  <div class="hero-hud hud-tl">
+    <span class="hud-label">Location</span>
+    <span class="hud-val">Nairobi · <span id="heroClock">—:—:—</span></span>
+  </div>
+  <div class="hero-hud hud-tr">
+    <span class="hud-label">Rate Range</span>
+    <span class="hud-val">KES 12K → 250K+</span>
+  </div>
+  <div class="hero-hud hud-bl">
+    <span class="hud-label">Frame</span>
+    <span class="hud-val"><span id="frameCount">001</span> / ∞</span>
+  </div>
+  <div class="hero-hud hud-br">
+    <span class="hud-label">ISO</span>
+    <span class="hud-val">100 · f/2.8 · 1/125</span>
+  </div>
+
   <div class="hero-meta">
     <span>STANDARD RATE CARD</span>
     <span class="dot">·</span>
@@ -63,26 +94,40 @@
     <span class="dot">·</span>
     <span>EFFECTIVE JANUARY 2026</span>
   </div>
-  <h1 class="hero-title">
-    <span class="line"><span class="reveal">Gare&nbsp;Jesse</span></span>
-    <span class="line italic"><span class="reveal">Productions.</span></span>
-  </h1>
-  <p class="hero-sub">
-    <span class="reveal delay-1">Cinematography · Photography · Branded Content</span>
-  </p>
-  <div class="hero-tags reveal delay-2">
-    <span class="tag">Revised Edition</span>
-    <span class="tag">KES &amp; USD</span>
-    <span class="tag">Nairobi, Kenya</span>
+
+  <div class="hero-title-wrap" id="heroTitleWrap">
+    <h1 class="hero-title" id="heroTitle">
+      <span class="line" data-split="Gare Jesse">Gare Jesse</span>
+      <span class="line italic" data-split="Productions.">Productions.</span>
+    </h1>
   </div>
-  <blockquote class="hero-quote reveal delay-3">
+
+  <!-- Rotating discipline display -->
+  <div class="hero-disciplines">
+    <div class="disc-stage" id="discStage">
+      <span class="disc-word is-active" data-idx="0">Cinematography.</span>
+      <span class="disc-word" data-idx="1">Photography.</span>
+      <span class="disc-word" data-idx="2">Branded Content.</span>
+    </div>
+    <ul class="disc-pills" id="discPills">
+      <li><button class="disc-pill is-active" data-disc="0" data-hover><em>01</em> Cinematography</button></li>
+      <li><button class="disc-pill" data-disc="1" data-hover><em>02</em> Photography</button></li>
+      <li><button class="disc-pill" data-disc="2" data-hover><em>03</em> Branded Content</button></li>
+    </ul>
+  </div>
+
+  <blockquote class="hero-quote">
     <span>"We don't price by the hour.</span>
     <span>We price by <em>what the work is worth</em>."</span>
   </blockquote>
-  <a href="#photography" class="scroll-cue" data-hover>
-    <span>SCROLL</span>
+
+  <a href="#photography" class="scroll-cue" id="scrollCue" data-hover>
+    <span>CAPTURE</span>
     <span class="cue-line"></span>
   </a>
+
+  <!-- Shutter flash overlay -->
+  <div class="shutter-flash" id="shutterFlash" aria-hidden="true"></div>
 </header>
 
 <main>

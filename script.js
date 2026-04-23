@@ -316,6 +316,103 @@ document.body.addEventListener("click",e=>{
   toggleBasket(btn.dataset.add);
 });
 
+// ========== Hero interactivity ==========
+(function heroInit(){
+  const hero = document.querySelector(".hero");
+  if(!hero) return;
+
+  // Split title letters into spans with staggered animation
+  hero.querySelectorAll(".hero-title .line").forEach(line=>{
+    const text = line.dataset.split || line.textContent;
+    line.innerHTML = "";
+    [...text].forEach((ch,i)=>{
+      const span = document.createElement("span");
+      span.className = "char";
+      span.textContent = ch === " " ? "\u00a0" : ch;
+      span.style.animationDelay = (0.18 + i*0.03) + "s";
+      line.appendChild(span);
+    });
+  });
+
+  // Rotating discipline
+  const stage = document.getElementById("discStage");
+  const pills = [...document.querySelectorAll(".disc-pill")];
+  const words = [...stage.querySelectorAll(".disc-word")];
+  let discIdx = 0;
+  let discTimer;
+  function showDisc(next,{manual=false}={}){
+    if(next === discIdx) return;
+    const prev = discIdx;
+    discIdx = next;
+    words[prev].classList.remove("is-active");
+    words[prev].classList.add("is-exit");
+    words[next].classList.remove("is-exit");
+    words[next].classList.add("is-active");
+    pills.forEach((p,i)=>p.classList.toggle("is-active",i===next));
+    setTimeout(()=>words[prev].classList.remove("is-exit"),500);
+    if(manual){clearInterval(discTimer); discTimer = setInterval(autoDisc,3800);}
+  }
+  function autoDisc(){showDisc((discIdx+1)%words.length);}
+  pills.forEach((p,i)=>p.addEventListener("click",()=>showDisc(i,{manual:true})));
+  discTimer = setInterval(autoDisc,3800);
+
+  // Live Nairobi clock (UTC+3)
+  const clockEl = document.getElementById("heroClock");
+  function tickClock(){
+    const now = new Date();
+    const utc = now.getTime() + now.getTimezoneOffset()*60000;
+    const nairobi = new Date(utc + 3*3600000);
+    const pad = n => String(n).padStart(2,"0");
+    clockEl.textContent = `${pad(nairobi.getHours())}:${pad(nairobi.getMinutes())}:${pad(nairobi.getSeconds())}`;
+  }
+  tickClock();
+  setInterval(tickClock,1000);
+
+  // Mouse parallax + spotlight
+  const titleWrap = document.getElementById("heroTitleWrap");
+  const spot = document.getElementById("heroSpot");
+  let rect = hero.getBoundingClientRect();
+  window.addEventListener("resize",()=>{rect = hero.getBoundingClientRect();});
+  hero.addEventListener("mousemove",e=>{
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    // spotlight
+    spot.style.setProperty("--mx", (x*100)+"%");
+    spot.style.setProperty("--my", (y*100)+"%");
+    // parallax tilt on title
+    const rx = (0.5 - y) * 6;
+    const ry = (x - 0.5) * 8;
+    const tx = (x - 0.5) * 14;
+    const ty = (y - 0.5) * 8;
+    titleWrap.style.transform = `translate3d(${tx}px,${ty}px,0) rotateX(${rx}deg) rotateY(${ry}deg)`;
+  });
+  hero.addEventListener("mouseleave",()=>{
+    titleWrap.style.transform = "";
+  });
+
+  // Magnetic scroll cue
+  const cue = document.getElementById("scrollCue");
+  hero.addEventListener("mousemove",e=>{
+    const cr = cue.getBoundingClientRect();
+    const cx = cr.left + cr.width/2;
+    const cy = cr.top + cr.height/2;
+    const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
+    cue.classList.toggle("magnet", dist < 120);
+  });
+
+  // Shutter click + frame counter (anywhere in hero not on interactive ctl)
+  const shutter = document.getElementById("shutterFlash");
+  const frameEl = document.getElementById("frameCount");
+  let frames = 1;
+  hero.addEventListener("click",e=>{
+    if(e.target.closest("a, button")) return;
+    shutter.classList.remove("fire"); void shutter.offsetWidth;
+    shutter.classList.add("fire");
+    frames = Math.min(frames+1, 999);
+    frameEl.textContent = String(frames).padStart(3,"0");
+  });
+})();
+
 // ========== Marquee ==========
 const marq = document.getElementById("marquee");
 const loop = "CINEMATOGRAPHY · PHOTOGRAPHY · BRANDED CONTENT · NAIROBI · EST. 2020 · ";
