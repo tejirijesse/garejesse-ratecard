@@ -282,3 +282,9 @@ document.body.addEventListener("mouseout",e=>{
     ring.classList.remove("hover"); cur.classList.remove("hover");
   }
 });
+
+// Shutter-click pulse on click
+window.addEventListener("click",()=>{
+  cur.classList.add("click");
+  setTimeout(()=>cur.classList.remove("click"),180);
+});
