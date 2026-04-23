@@ -254,8 +254,10 @@ img.brand-mark{background:transparent}
 .foot-title .italic{font-style:italic;color:rgba(28,22,18,.55)}
 .foot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;padding-bottom:64px;border-bottom:1px solid var(--line);margin-bottom:24px}
 .foot-grid>div{display:flex;flex-direction:column;gap:8px}
-.foot-grid a{border-bottom:1px solid transparent;transition:border-color .3s;width:fit-content}
+.foot-grid a{border-bottom:1px solid transparent;transition:border-color .3s,color .3s;width:fit-content;font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;display:inline-flex;align-items:baseline;gap:10px}
+.foot-grid a em{font-family:var(--f-display);font-style:italic;text-transform:none;font-size:14px;letter-spacing:-.005em;color:var(--fg)}
 .foot-grid a:hover{border-color:var(--ink)}
+.foot-loc{font-family:var(--f-mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-top:6px}
 .foot-grid p{font-size:13px;line-height:1.6;color:var(--muted);max-width:260px}
 .foot-label{font-family:var(--f-mono);font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
 .foot-bottom{display:flex;justify-content:space-between;gap:24px;font-family:var(--f-mono);font-size:11px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;overflow:hidden}
