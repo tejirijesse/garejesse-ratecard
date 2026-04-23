@@ -149,7 +149,7 @@ function renderAddons(){
 
 // ========== Render: retainers ==========
 function renderRetainers(){
-  const root = document.getElementById("retainers");
+  const root = document.getElementById("retainersGrid");
   root.innerHTML = retainers.map(r=>`
     <article class="retainer fade-up" data-hover>
       <div class="retainer-name">${r.name}</div>
