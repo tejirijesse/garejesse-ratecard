@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gare Jesse Productions — Rate Card 2025</title>
+<meta name="description" content="Cinematography, photography, and branded content. Nairobi, Kenya. Rate card valid Jan–Dec 2025." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,700&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="grain"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand" data-hover>
+      <span class="brand-mark">GJ</span>
+      <span class="brand-name">GARE&nbsp;JESSE</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#photography" data-hover>01 Photo</a></li>
+      <li><a href="#videography" data-hover>02 Video</a></li>
+      <li><a href="#hybrid" data-hover>03 Hybrid</a></li>
+      <li><a href="#addons" data-hover>04 Add-ons</a></li>
+      <li><a href="#retainers" data-hover>05 Retainers</a></li>
+      <li><a href="#terms" data-hover>06 Terms</a></li>
+    </ul>
+    <div class="currency-switch" id="currencySwitch" data-hover>
+      <span class="cur-label">KES</span>
+      <span class="cur-track"><span class="cur-knob"></span></span>
+      <span class="cur-label">USD</span>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-meta">
+    <span>NAIROBI, KE</span>
+    <span class="dot">·</span>
+    <span>EST. 2020</span>
+    <span class="dot">·</span>
+    <span>VALID JAN — DEC 2025</span>
+  </div>
+  <h1 class="hero-title">
+    <span class="line"><span class="reveal">Gare&nbsp;Jesse</span></span>
+    <span class="line italic"><span class="reveal">Productions.</span></span>
+  </h1>
+  <p class="hero-sub">
+    <span class="reveal delay-1">Cinematography · Photography · Branded Content</span>
+  </p>
+  <div class="hero-tags reveal delay-2">
+    <span class="tag">Rate Card 2025</span>
+    <span class="tag">KES / USD</span>
+    <span class="tag">Nairobi, Kenya</span>
+  </div>
+  <blockquote class="hero-quote reveal delay-3">
+    <span>"Every price is a promise.</span>
+    <span><em>These are ours</em> — earned, not estimated."</span>
+  </blockquote>
+  <a href="#photography" class="scroll-cue" data-hover>
+    <span>SCROLL</span>
+    <span class="cue-line"></span>
+  </a>
+</header>
+
+<main>
+
+<!-- PHOTOGRAPHY -->
+<section class="section" id="photography" data-section="01">
+  <div class="section-head">
+    <span class="section-num">01</span>
+    <div class="section-title-wrap">
+      <h2 class="section-title">Photography<span class="slash"> / </span><em>Still&nbsp;&amp;&nbsp;Print</em></h2>
+      <p class="section-lede">All packages include full post-production editing, colour grading, and delivery via private online gallery. RAW files available on request at additional cost.</p>
+    </div>
+  </div>
+
+  <div class="cards" data-price-group="photo"></div>
+</section>
+
+<!-- VIDEOGRAPHY -->
+<section class="section alt" id="videography" data-section="02">
+  <div class="section-head">
+    <span class="section-num">02</span>
+    <div class="section-title-wrap">
+      <h2 class="section-title">Videography<span class="slash"> / </span><em>Motion&nbsp;&amp;&nbsp;Film</em></h2>
+      <p class="section-lede">Shot on Canon Cinema line. All video packages include original sound design, colour grade, and licensed background music unless otherwise specified.</p>
+    </div>
+  </div>
+  <div class="cards" data-price-group="video"></div>
+</section>
+
+<!-- HYBRID -->
+<section class="section" id="hybrid" data-section="03">
+  <div class="section-head">
+    <span class="section-num">03</span>
+    <div class="section-title-wrap">
+      <h2 class="section-title">Hybrid<span class="slash"> / </span><em>Photo&nbsp;+&nbsp;Video</em></h2>
+      <p class="section-lede">Bundled packages save 15–20% vs booking separately. One team, one brief, one cohesive visual world.</p>
+    </div>
+  </div>
+  <div class="bundles" data-price-group="bundle"></div>
+</section>
+
+<!-- ADDONS -->
+<section class="section alt" id="addons" data-section="04">
+  <div class="section-head">
+    <span class="section-num">04</span>
+    <div class="section-title-wrap">
+      <h2 class="section-title">Add-ons<span class="slash"> / </span><em>Bolt-on&nbsp;Services</em></h2>
+      <p class="section-lede">Drop them onto any package. Priced in KES. Converted live.</p>
+    </div>
+  </div>
+  <ul class="addons-list" id="addonsList"></ul>
+</section>
+
+<!-- RETAINERS -->
+<section class="section" id="retainers" data-section="05">
+  <div class="section-head">
+    <span class="section-num">05</span>
+    <div class="section-title-wrap">
+      <h2 class="section-title">Retainers<span class="slash"> / </span><em>Ongoing&nbsp;Partnerships</em></h2>
+      <p class="section-lede">For brands that need consistent, premium visual content every month. Retainers secure priority scheduling and lower effective day rates. Minimum 3-month commitment.</p>
+    </div>
+  </div>
+  <div class="retainers" id="retainers"></div>
+</section>
+
+<!-- TERMS -->
+<section class="section alt terms" id="terms" data-section="06">
+  <div class="section-head">
+    <span class="section-num">06</span>
+    <div class="section-title-wrap">
+      <h2 class="section-title">Terms<span class="slash"> / </span><em>The&nbsp;Fine&nbsp;Print</em></h2>
+      <p class="section-lede">Click each clause to expand. The rules of the room.</p>
+    </div>
+  </div>
+  <div class="terms-list" id="termsList"></div>
+</section>
+
+<!-- BUILDER -->
+<section class="section builder" id="builder">
+  <div class="section-head">
+    <span class="section-num">07</span>
+    <div class="section-title-wrap">
+      <h2 class="section-title">Build a Quote<span class="slash"> / </span><em>Your&nbsp;Basket</em></h2>
+      <p class="section-lede">Tap any <span class="kbd">+</span> on a service above. Watch the total tally here.</p>
+    </div>
+  </div>
+  <div class="basket">
+    <ul class="basket-list" id="basketList">
+      <li class="basket-empty">Nothing selected yet. Pick a service above — or just stare at the numbers.</li>
+    </ul>
+    <div class="basket-total">
+      <div>
+        <span class="basket-label">Subtotal</span>
+        <span class="basket-hint">+ 16% VAT where applicable</span>
+      </div>
+      <div class="basket-amounts">
+        <span class="basket-kes" id="basketKes">KES 0</span>
+        <span class="basket-usd" id="basketUsd">≈ USD 0</span>
+      </div>
+    </div>
+    <div class="basket-actions">
+      <button class="btn ghost" id="basketClear" data-hover>Clear</button>
+      <a class="btn" id="basketEmail" href="mailto:hello@garejesse.com" data-hover>Email this brief</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="foot-title">
+    <span class="reveal">Every frame is a decision.</span>
+    <span class="reveal italic">We make them count.</span>
+  </div>
+  <div class="foot-grid">
+    <div>
+      <span class="foot-label">Book</span>
+      <a href="mailto:hello@garejesse.com" data-hover>hello@garejesse.com</a>
+      <a href="tel:+254700000000" data-hover>+254 700 000 000</a>
+    </div>
+    <div>
+      <span class="foot-label">Find</span>
+      <a href="#" data-hover>@garejesse</a>
+      <span>Nairobi, KE</span>
+    </div>
+    <div>
+      <span class="foot-label">Note</span>
+      <p>Valid Jan–Dec 2025. Supersedes all previous versions. USD at KES 129 / USD.</p>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2025 Gare Jesse Productions</span>
+    <span class="marquee" id="marquee"></span>
+    <span>v1.0</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
