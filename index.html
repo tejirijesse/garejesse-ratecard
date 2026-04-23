@@ -44,10 +44,13 @@
       <li><a href="#retainers" data-hover>05 Retainers</a></li>
       <li><a href="#glance" data-hover>06 Glance</a></li>
     </ul>
-    <div class="currency-switch" id="currencySwitch" data-hover>
-      <span class="cur-label">KES</span>
-      <span class="cur-track"><span class="cur-knob"></span></span>
-      <span class="cur-label">USD</span>
+    <div class="currency-picker" id="currencyPicker">
+      <button class="cur-trigger" id="curTrigger" data-hover aria-haspopup="listbox" aria-expanded="false">
+        <span class="cur-code" id="curCode">KES</span>
+        <span class="cur-rate" id="curRate">1.00</span>
+        <svg class="cur-chev" viewBox="0 0 12 8" width="10" height="7" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 1.5 L6 6.5 L11 1.5"/></svg>
+      </button>
+      <ul class="cur-menu" id="curMenu" role="listbox" hidden></ul>
     </div>
   </div>
 </nav>

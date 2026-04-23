@@ -1,5 +1,18 @@
 // ========== Data ==========
-const USD_RATE = 129;
+// Rates are target-units per 1 KES (base). Updated early 2026.
+const CURRENCIES = [
+  {code:"KES",name:"Kenyan Shilling",rate:1,       dec:0},
+  {code:"USD",name:"US Dollar",      rate:1/129,   dec:0},
+  {code:"EUR",name:"Euro",           rate:1/140,   dec:0},
+  {code:"GBP",name:"Pound Sterling", rate:1/163,   dec:0},
+  {code:"NGN",name:"Nigerian Naira", rate:11.86,   dec:0},
+  {code:"UGX",name:"Ugandan Shilling",rate:30.2,   dec:0},
+  {code:"RWF",name:"Rwandan Franc",  rate:10.47,   dec:0},
+  {code:"ZAR",name:"South African Rand",rate:0.143,dec:0},
+  {code:"GHS",name:"Ghanaian Cedi",  rate:0.116,   dec:0},
+];
+const CUR_BY_CODE = Object.fromEntries(CURRENCIES.map(c=>[c.code,c]));
+const USD_RATE = 129; // legacy constant kept for reference
 
 const photoServices = [
   {id:"p1",title:"Portrait Session",desc:"Individual, couple, family, or professional headshots. Studio or outdoor.",includes:["Style consult","1 outfit change","Full retouching"],duration:"2 hrs",deliverables:"30 edited images",price:12000},
@@ -49,10 +62,21 @@ const retainers = [
 let currency = "KES";
 const basket = new Map();
 
-const fmtKES = n => "KES " + Number(n).toLocaleString("en-US");
-const fmtUSD = n => "USD " + Math.round(Number(n)/USD_RATE).toLocaleString("en-US");
-const fmt = n => currency === "KES" ? fmtKES(n) : fmtUSD(n);
-const fmtBoth = n => `${fmtKES(n)} <small>≈ ${fmtUSD(n)}</small>`;
+function convert(kes, code){
+  const c = CUR_BY_CODE[code] || CUR_BY_CODE.KES;
+  return kes * c.rate;
+}
+function fmtIn(kes, code){
+  const c = CUR_BY_CODE[code] || CUR_BY_CODE.KES;
+  const v = convert(kes, code);
+  const rounded = c.dec>0 ? v.toFixed(c.dec) : Math.round(v);
+  return `${c.code} ${Number(rounded).toLocaleString("en-US",{maximumFractionDigits:c.dec})}`;
+}
+const fmtKES = n => fmtIn(n,"KES");
+const fmtUSD = n => fmtIn(n,"USD");
+const fmt = n => fmtIn(n, currency);
+// Alternate readout — always show KES next to non-KES
+const fmtAlt = n => currency === "KES" ? fmtIn(n,"USD") : fmtIn(n,"KES");
 
 // ========== Render: service cards ==========
 function renderCards(group, list){
@@ -76,7 +100,7 @@ function renderCards(group, list){
       <div class="card-right">
         <div class="card-price" data-price="${s.price}">
           ${s.from?"FROM ":""}<span class="price-value">${fmt(s.price)}</span>${s.from?"+":""}
-          <small>${currency==="KES"?`≈ ${fmtUSD(s.price)}${s.from?"+":""}`:`≈ ${fmtKES(s.price)}${s.from?"+":""}`}</small>
+          <small>≈ ${fmtAlt(s.price)}${s.from?"+":""}</small>
           ${s.was?`<span class="was-price">was <s>${fmtKES(s.was)}</s></span>`:""}
         </div>
       </div>
@@ -94,7 +118,7 @@ function renderBundles(){
       <div class="bundle-name">${b.name}</div>
       <div class="bundle-price" data-price="${b.price}">
         ${b.from?"from ":""}<span class="price-value">${fmt(b.price)}</span>
-        <small>${currency==="KES"?`≈ ${fmtUSD(b.price)}`:`≈ ${fmtKES(b.price)}`}</small>
+        <small>≈ ${fmtAlt(b.price)}</small>
       </div>
       <div class="bundle-sub">${b.sub}</div>
       <ul class="bundle-feats">
@@ -116,7 +140,7 @@ function renderAddons(){
         <p>${a.desc}</p>
       </div>
       <div class="addon-price" data-price="${a.price||0}">
-        ${a.price?`<span class="price-value">${fmt(a.price)}</span><small>${currency==="KES"?`≈ ${fmtUSD(a.price)}`:`≈ ${fmtKES(a.price)}`}</small>`:`<em>${a.priceLabel}</em>`}
+        ${a.price?`<span class="price-value">${fmt(a.price)}</span><small>≈ ${fmtAlt(a.price)}</small>`:`<em>${a.priceLabel}</em>`}
       </div>
       ${a.price?`<button class="addon-add" data-add="${a.id}" data-hover><span>+</span></button>`:`<span class="addon-add" style="opacity:.3;pointer-events:none">·</span>`}
     </li>
@@ -148,16 +172,68 @@ function updatePrices(){
     const primary = el.querySelector(".price-value");
     const alt = el.querySelector("small");
     if(primary) primary.textContent = fmt(p);
-    if(alt) alt.textContent = currency==="KES"?`≈ ${fmtUSD(p)}`:`≈ ${fmtKES(p)}`;
+    if(alt) alt.textContent = `≈ ${fmtAlt(p)}`;
   });
   renderBasket();
 }
 
-document.getElementById("currencySwitch").addEventListener("click",()=>{
-  currency = currency==="KES"?"USD":"KES";
-  document.getElementById("currencySwitch").classList.toggle("usd",currency==="USD");
-  updatePrices();
+// Currency dropdown
+const curPicker = document.getElementById("currencyPicker");
+const curTrigger = document.getElementById("curTrigger");
+const curMenu = document.getElementById("curMenu");
+const curCodeEl = document.getElementById("curCode");
+const curRateEl = document.getElementById("curRate");
+
+function rateLabel(code){
+  const c = CUR_BY_CODE[code];
+  if(code==="KES") return "Base";
+  const perKes = c.rate;
+  // Show how many of currency per 1 USD for intuition; fall back to "1 KES ≈ x"
+  const valPer1Usd = convert(129, code); // 129 KES = 1 USD
+  if(valPer1Usd >= 1){
+    return `1 USD ≈ ${Math.round(valPer1Usd).toLocaleString()} ${code}`;
+  }
+  return `1 ${code} ≈ ${Math.round(1/perKes).toLocaleString()} KES`;
+}
+
+function renderCurMenu(){
+  curMenu.innerHTML = CURRENCIES.map(c=>`
+    <li data-code="${c.code}" class="${c.code===currency?"active":""}" data-hover role="option">
+      <span class="opt-code">${c.code}</span>
+      <span class="opt-name">${c.name}</span>
+      <span class="opt-rate">${rateLabel(c.code)}</span>
+    </li>
+  `).join("");
+  curMenu.querySelectorAll("li").forEach(li=>{
+    li.addEventListener("click",()=>{
+      currency = li.dataset.code;
+      updateCurrencyUI();
+      updatePrices();
+      closeCurMenu();
+    });
+  });
+}
+
+function updateCurrencyUI(){
+  curCodeEl.textContent = currency;
+  curRateEl.textContent = currency==="KES" ? "Base" : rateLabel(currency).replace(/^1 /,"");
+  renderCurMenu();
+}
+
+function openCurMenu(){curPicker.classList.add("open");curMenu.hidden=false;curTrigger.setAttribute("aria-expanded","true");}
+function closeCurMenu(){curPicker.classList.remove("open");curMenu.hidden=true;curTrigger.setAttribute("aria-expanded","false");}
+
+curTrigger.addEventListener("click",(e)=>{
+  e.stopPropagation();
+  curPicker.classList.contains("open") ? closeCurMenu() : openCurMenu();
 });
+document.addEventListener("click",(e)=>{
+  if(!curPicker.contains(e.target)) closeCurMenu();
+});
+document.addEventListener("keydown",(e)=>{if(e.key==="Escape") closeCurMenu();});
+
+renderCurMenu();
+updateCurrencyUI();
 
 // ========== Basket ==========
 function lookupItem(id){
