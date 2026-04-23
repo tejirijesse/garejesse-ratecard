@@ -39,7 +39,8 @@ em{font-style:italic;font-family:var(--f-display);font-weight:300}
 .nav{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(16px);background:rgba(0,0,0,.55);border-bottom:1px solid var(--line)}
 .nav-inner{max-width:1440px;margin:0 auto;padding:18px 32px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:32px}
 .brand{display:flex;align-items:baseline;gap:12px;font-family:var(--f-display);letter-spacing:.02em}
-.brand-mark{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border:1px solid var(--fg);border-radius:50%;font-size:12px;font-family:var(--f-mono);letter-spacing:.05em}
+.brand-mark{width:36px;height:36px;border-radius:8px;object-fit:contain;display:block;filter:invert(0)}
+img.brand-mark{background:transparent}
 .brand-name{font-size:15px;letter-spacing:.2em;font-weight:400}
 .nav-links{list-style:none;display:flex;gap:28px;justify-content:center;flex-wrap:wrap}
 .nav-links a{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);position:relative;padding:4px 0;transition:color .3s var(--ease)}
@@ -172,7 +173,23 @@ em{font-style:italic;font-family:var(--f-display);font-weight:300}
 @media (max-width:1000px){.retainers{grid-template-columns:repeat(2,1fr)}.retainer{border-right:none;border-bottom:1px solid var(--line)}.retainer:nth-child(odd){border-right:1px solid var(--line)}}
 @media (max-width:600px){.retainers{grid-template-columns:1fr}.retainer:nth-child(odd){border-right:none}}
 
-/* ---------- Terms accordion ---------- */
+/* ---------- At a Glance ---------- */
+.glance-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line)}
+.glance-tile{padding:48px 32px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:16px;transition:all .4s var(--ease);cursor:none;min-height:280px;justify-content:space-between}
+.glance-tile:last-child{border-right:none}
+.glance-tile:hover{background:#fff;color:#000;padding:60px 32px}
+.glance-label{font-family:var(--f-mono);font-size:11px;letter-spacing:.25em;text-transform:uppercase;opacity:.7}
+.glance-range{font-family:var(--f-display);font-size:clamp(28px,3.5vw,48px);font-weight:300;line-height:1;letter-spacing:-.02em;display:flex;align-items:baseline;flex-wrap:wrap;gap:6px}
+.glance-range em{font-style:normal}
+.glance-unit{font-family:var(--f-mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;opacity:.6}
+@media (max-width:900px){.glance-grid{grid-template-columns:repeat(2,1fr)}.glance-tile:nth-child(-n+2){border-bottom:1px solid var(--line)}.glance-tile:nth-child(2n){border-right:none}}
+@media (max-width:540px){.glance-grid{grid-template-columns:1fr}.glance-tile{border-right:none!important;border-bottom:1px solid var(--line)}.glance-tile:last-child{border-bottom:none}}
+
+/* ---------- Was-price strike ---------- */
+.was-price{display:block;font-family:var(--f-mono);font-size:10px;letter-spacing:.15em;color:var(--muted);margin-top:4px;text-transform:uppercase;font-weight:300}
+.was-price s{opacity:.6}
+
+/* ---------- Terms accordion (unused, kept) ---------- */
 .terms-list{border-top:1px solid var(--line)}
 .term{border-bottom:1px solid var(--line);overflow:hidden;transition:background .3s var(--ease)}
 .term:hover{background:rgba(255,255,255,.02)}
