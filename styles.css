@@ -25,7 +25,18 @@ em{font-style:italic;font-family:var(--f-display);font-weight:900;letter-spacing
 
 /* ---------- Decorations disabled (cursor restored) ---------- */
 .grain,.letterbox,.viewfinder,.hero-spot,.hero-hud,.hero-disciplines,.shutter-flash{display:none!important}
-.scroll-progress{background:var(--ink)}
+.scroll-progress{background:var(--ink);height:3px}
+
+/* ---------- Adidas-style drop strip ---------- */
+.drop-strip{position:fixed;top:0;left:0;right:0;height:30px;background:var(--ink);color:var(--paper);overflow:hidden;display:flex;align-items:center;z-index:55;border-bottom:2px solid var(--ink)}
+.drop-track{display:flex;white-space:nowrap;animation:dropRun 30s linear infinite;font-family:var(--f-display);font-style:italic;font-weight:900;font-size:13px;letter-spacing:.04em;text-transform:uppercase;gap:18px;padding-right:18px}
+.drop-track .sep{opacity:.5;font-weight:500}
+@keyframes dropRun{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* Spec chips */
+.hero-spec{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;position:relative;z-index:2}
+.spec-chip{display:inline-flex;align-items:center;padding:7px 14px;border:1.5px solid var(--ink);font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;transition:background .25s,color .25s,transform .25s var(--ease);cursor:none}
+.spec-chip:hover{background:var(--ink);color:var(--paper);transform:translateY(-2px)}
 
 /* ---------- Camera cursor ---------- */
 .cam-cursor{position:fixed;top:0;left:0;width:44px;height:33px;pointer-events:none;z-index:9999;color:var(--ink);transform:translate(-50%,-50%);transition:transform .25s var(--ease),color .2s}
@@ -53,7 +64,7 @@ em{font-style:italic;font-family:var(--f-display);font-weight:900;letter-spacing
 .scroll-progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:200;transition:width .05s linear}
 
 /* ---------- Nav ---------- */
-.nav{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(16px);background:rgba(255,255,255,.72);border-bottom:1px solid var(--line)}
+.nav{position:fixed;top:30px;left:0;right:0;z-index:50;backdrop-filter:blur(16px);background:var(--paper);border-bottom:2px solid var(--ink)}
 .nav-inner{max-width:1440px;margin:0 auto;padding:16px 20px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px}
 @media (min-width:900px){.nav-inner{padding:18px 32px;gap:32px}}
 .brand{display:flex;align-items:baseline;gap:12px;font-family:var(--f-display);letter-spacing:.02em}
@@ -87,7 +98,8 @@ img.brand-mark{background:transparent}
 @media (max-width:900px){.nav-links{display:none}.nav-inner{grid-template-columns:auto 1fr}}
 
 /* ---------- Hero ---------- */
-.hero{min-height:100vh;padding:160px 32px 80px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;text-align:left;position:relative;overflow:hidden}
+.hero{min-height:100vh;padding:200px 32px 100px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;text-align:left;position:relative;overflow:hidden}
+@media (max-width:768px){.hero{padding:170px 20px 80px}}
 
 /* Cinematic letterbox bars */
 .letterbox{position:absolute;left:0;right:0;height:36px;background:var(--ink);z-index:4;transform-origin:center}
@@ -190,8 +202,8 @@ img.brand-mark{background:transparent}
 /* ---------- Section shell ---------- */
 .section{padding:160px 32px;max-width:1440px;margin:0 auto;position:relative}
 .section.alt{background:transparent}
-.section-head{display:grid;grid-template-columns:120px 1fr;gap:48px;align-items:start;margin-bottom:96px;padding-bottom:32px;border-bottom:1px solid var(--line)}
-.section-num{font-family:var(--f-mono);font-size:13px;letter-spacing:.22em;color:var(--ink);position:sticky;top:100px;font-weight:700}
+.section-head{display:grid;grid-template-columns:120px 1fr;gap:48px;align-items:start;margin-bottom:96px;padding-bottom:32px;border-bottom:2.5px solid var(--ink)}
+.section-num{font-family:var(--f-mono);font-size:14px;letter-spacing:.22em;color:var(--paper);background:var(--ink);padding:10px 16px;font-weight:900;display:inline-block;align-self:start;justify-self:start;line-height:1}
 .section-title{font-family:var(--f-display);font-weight:900;font-style:italic;font-size:clamp(48px,8vw,120px);line-height:.9;letter-spacing:-.04em;text-transform:uppercase;cursor:none;transition:transform .35s var(--ease),letter-spacing .35s var(--ease)}
 .section-title:hover{transform:translateX(8px);letter-spacing:-.02em}
 .section-title:hover em{font-style:normal}
@@ -366,10 +378,10 @@ img.brand-mark{background:transparent}
 .basket-kes{display:block;font-family:var(--f-display);font-style:italic;font-size:48px;font-weight:900;letter-spacing:-.04em;line-height:1}
 .basket-usd{display:block;font-family:var(--f-mono);font-size:12px;letter-spacing:.15em;color:var(--muted);margin-top:6px}
 .basket-actions{display:flex;gap:12px;margin-top:24px;justify-content:flex-end}
-.btn{padding:14px 28px;background:var(--ink);color:var(--paper);font-family:var(--f-mono);font-size:11px;letter-spacing:.25em;text-transform:uppercase;border:1px solid var(--ink);transition:all .3s var(--ease);display:inline-flex;align-items:center;gap:10px}
-.btn:hover{background:transparent;color:var(--ink)}
+.btn{padding:18px 32px;background:var(--ink);color:var(--paper);font-family:var(--f-display);font-style:italic;font-weight:900;font-size:13px;letter-spacing:.16em;text-transform:uppercase;border:2px solid var(--ink);transition:all .3s var(--ease);display:inline-flex;align-items:center;gap:12px;cursor:none}
+.btn:hover{background:var(--paper);color:var(--ink);transform:translateX(4px)}
 .btn.ghost{background:transparent;color:var(--ink)}
-.btn.ghost:hover{background:var(--ink);color:var(--paper)}
+.btn.ghost:hover{background:var(--ink);color:var(--paper);transform:translateX(-4px)}
 
 /* ---------- Footer ---------- */
 .footer{padding:120px 32px 48px;max-width:1440px;margin:0 auto;border-top:1px solid var(--line)}

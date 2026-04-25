@@ -434,30 +434,4 @@ const io = new IntersectionObserver(entries=>{
 },{threshold:.12,rootMargin:"0px 0px -60px 0px"});
 document.querySelectorAll(".fade-up").forEach(el=>io.observe(el));
 
-// ========== Custom cursor ==========
-const cur = document.getElementById("cursor");
-const ring = document.getElementById("cursorRing");
-let mx=0,my=0,rx=0,ry=0;
-window.addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY;cur.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`;});
-function tick(){
-  rx += (mx-rx)*.18; ry += (my-ry)*.18;
-  ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`;
-  requestAnimationFrame(tick);
-}
-tick();
-document.body.addEventListener("mouseover",e=>{
-  if(e.target.closest("[data-hover], a, button")){
-    ring.classList.add("hover"); cur.classList.add("hover");
-  }
-});
-document.body.addEventListener("mouseout",e=>{
-  if(e.target.closest("[data-hover], a, button")){
-    ring.classList.remove("hover"); cur.classList.remove("hover");
-  }
-});
-
-// Shutter-click pulse on click
-window.addEventListener("click",()=>{
-  cur.classList.add("click");
-  setTimeout(()=>cur.classList.remove("click"),180);
-});
+// Cursor logic moved to cursor.js (shared across pages)
