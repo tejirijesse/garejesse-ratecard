@@ -3,19 +3,20 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Gare Jesse — A studio of light.</title>
-<meta name="description" content="Gare Jesse Productions. Cinematography, photography, and branded content. Nairobi." />
+<title>GARE JESSE — TRANSMISSION 002</title>
+<meta name="description" content="GARE JESSE PRODUCTIONS · NAIROBI · 2026" />
 <link rel="icon" type="image/png" href="logo.png" />
 <link rel="apple-touch-icon" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,700&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,700;9..144,900&family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="landing.css" />
 </head>
 <body>
+
 <div class="grain"></div>
 
-<!-- Camera cursor (reused from rate card) -->
+<!-- Camera cursor reused -->
 <div class="cam-cursor" id="cursor" aria-hidden="true">
   <svg viewBox="0 0 48 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round">
     <path d="M6 10 L14 10 L17 5 L31 5 L34 10 L42 10 Q46 10 46 14 L46 28 Q46 32 42 32 L6 32 Q2 32 2 28 L2 14 Q2 10 6 10 Z"/>
@@ -29,103 +30,106 @@
   <span class="br bl"></span><span class="br br2"></span>
 </div>
 
-<!-- Soft light that follows the cursor -->
-<div class="lamp" id="lamp"></div>
+<!-- TOP MARQUEE -->
+<div class="marq marq-top" aria-hidden="true">
+  <div class="marq-track">
+    <span>GARE JESSE PRODUCTIONS · TRANSMISSION 002 · NAIROBI 2026 · CINEMATOGRAPHY · PHOTOGRAPHY · BRANDED CONTENT · WE PRICE BY WHAT THE WORK IS WORTH ·&nbsp;</span>
+    <span>GARE JESSE PRODUCTIONS · TRANSMISSION 002 · NAIROBI 2026 · CINEMATOGRAPHY · PHOTOGRAPHY · BRANDED CONTENT · WE PRICE BY WHAT THE WORK IS WORTH ·&nbsp;</span>
+  </div>
+</div>
 
+<!-- TOP BAR -->
+<header class="bar bar-top">
+  <div class="bar-l">
+    <span class="dot live"></span>
+    <span>STREAM 002 · LIVE</span>
+  </div>
+  <div class="bar-c">
+    <a href="/" class="logo-mark" data-hover>
+      <img src="logo.png" alt="" />
+    </a>
+  </div>
+  <div class="bar-r">
+    <span id="clock">—</span>
+    <span class="sep">/</span>
+    <span>NRB · EAT</span>
+  </div>
+</header>
+
+<!-- MAIN STAGE -->
 <main class="page">
 
-  <!-- Top frame -->
-  <header class="frame frame-top">
-    <a href="/" class="mark" data-hover>
-      <img src="logo.png" alt="Gare Jesse" />
-      <span>GARE JESSE</span>
-    </a>
-    <div class="meta">
-      <span>Nairobi · 1°17′S 36°49′E</span>
-      <span class="dot">·</span>
-      <span id="clock">—</span>
-    </div>
-    <a href="mailto:hello@garejesse.com" class="contact" data-hover>hello@garejesse.com</a>
-  </header>
-
-  <!-- Center -->
-  <section class="stage">
-
-    <!-- Abstract SVG: two slow-moving concentric arcs and a hairline that draws across -->
-    <svg class="abstract" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-      <defs>
-        <linearGradient id="ink" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stop-color="var(--ink)" stop-opacity="0"/>
-          <stop offset="50%" stop-color="var(--ink)" stop-opacity="1"/>
-          <stop offset="100%" stop-color="var(--ink)" stop-opacity="0"/>
-        </linearGradient>
-      </defs>
-      <!-- Hairline -->
-      <line class="line-h" x1="50" y1="300" x2="950" y2="300" stroke="url(#ink)" stroke-width="1"/>
-      <!-- Outer ring -->
-      <circle class="ring outer" cx="500" cy="300" r="240" fill="none" stroke="var(--ink)" stroke-width="1" stroke-dasharray="2 6"/>
-      <!-- Inner ring -->
-      <circle class="ring inner" cx="500" cy="300" r="100" fill="none" stroke="var(--ink)" stroke-width="1"/>
-      <!-- Aperture blade -->
-      <path class="blade" d="M500 200 L580 260 L580 340 L500 400 L420 340 L420 260 Z" fill="none" stroke="var(--ink)" stroke-width="1"/>
-      <!-- Tick marks -->
-      <g class="ticks">
-        <line x1="500" y1="40"  x2="500" y2="56"  stroke="var(--ink)"/>
-        <line x1="500" y1="544" x2="500" y2="560" stroke="var(--ink)"/>
-        <line x1="40"  y1="300" x2="56"  y2="300" stroke="var(--ink)"/>
-        <line x1="944" y1="300" x2="960" y2="300" stroke="var(--ink)"/>
-      </g>
-    </svg>
-
-    <h1 class="bigtype">
-      <span class="row">
-        <span class="word" data-split>Gare</span>
-        <span class="word" data-split>Jesse.</span>
-      </span>
-      <span class="sub">
-        <em>A studio of light.</em>
-      </span>
-    </h1>
-
-    <!-- Rotating discipline -->
-    <div class="rotor" aria-live="polite">
-      <span class="rotor-label">Working in</span>
-      <span class="rotor-stage">
-        <span class="rotor-word is-active">Cinematography.</span>
-        <span class="rotor-word">Photography.</span>
-        <span class="rotor-word">Branded Content.</span>
-        <span class="rotor-word">Direction.</span>
-      </span>
-    </div>
+  <!-- Massive bleeding type -->
+  <section class="mega" id="mega">
+    <span class="mega-row mega-row-1" data-glitch>GARE</span>
+    <span class="mega-row mega-row-2" data-glitch>
+      <span class="slash-num">02</span>JESSE
+    </span>
+    <span class="mega-row mega-row-3" data-glitch>PRODUCTIONS<span class="period">.</span></span>
   </section>
 
-  <!-- Bottom frame -->
-  <footer class="frame frame-bottom">
-    <div class="links">
-      <a href="rate-card.html" class="ghost-link" data-hover>
-        <span class="num">01</span>
-        <span class="label">Rate Card 2026</span>
-        <span class="arrow">→</span>
-      </a>
-      <a href="#work" class="ghost-link" data-hover>
-        <span class="num">02</span>
-        <span class="label">Selected Work</span>
-        <span class="arrow soon">soon</span>
-      </a>
-      <a href="mailto:hello@garejesse.com" class="ghost-link" data-hover>
-        <span class="num">03</span>
-        <span class="label">Start a Project</span>
-        <span class="arrow">→</span>
-      </a>
+  <!-- Asymmetric content -->
+  <section class="grid">
+    <div class="cell cell-status">
+      <span class="cell-label">[ STATUS ]</span>
+      <p>OPEN FOR BOOKINGS<br>NAIROBI &nbsp;·&nbsp; KENYA<br>WORLDWIDE ON REQUEST</p>
     </div>
-    <div class="footer-meta">
-      <span>© Gare Jesse 2026</span>
-      <span class="dot">·</span>
-      <span>v0.1 — Landing</span>
-    </div>
-  </footer>
 
+    <div class="cell cell-cta">
+      <a href="rate-card.html" class="enter" data-hover>
+        <span class="enter-label">RATE CARD 2026</span>
+        <span class="enter-arrow">→</span>
+        <span class="enter-line"></span>
+      </a>
+      <span class="press-hint">OR PRESS <kbd>R</kbd></span>
+    </div>
+
+    <div class="cell cell-manifesto" id="manifesto" data-drag>
+      <span class="cell-label">[ MANIFESTO · DRAG ME ]</span>
+      <p>
+        EVERY FRAME IS A DECISION.<br>
+        WE PRICE BY WHAT THE WORK IS WORTH.<br>
+        NOT BY THE HOUR.<br>
+        — G.J.J
+      </p>
+    </div>
+
+    <div class="cell cell-index">
+      <span class="cell-label">[ INDEX ]</span>
+      <ul class="idx">
+        <li><span class="idx-n">001</span><span class="idx-t">RATE CARD</span><a href="rate-card.html" data-hover>OPEN ↗</a></li>
+        <li><span class="idx-n">002</span><span class="idx-t">SELECTED WORK</span><span class="idx-soon">SOON</span></li>
+        <li><span class="idx-n">003</span><span class="idx-t">CONTACT</span><a href="mailto:hello@garejesse.com" data-hover>OPEN ↗</a></li>
+        <li><span class="idx-n">004</span><span class="idx-t">PRESS / @garejoshuajesse</span><a href="https://instagram.com/garejoshuajesse" target="_blank" rel="noopener" data-hover>OPEN ↗</a></li>
+      </ul>
+    </div>
+  </section>
 </main>
+
+<!-- BOTTOM BAR -->
+<footer class="bar bar-bottom">
+  <div class="bar-l">
+    <span>© GARE JOSHUA JESSE — 2026</span>
+  </div>
+  <div class="bar-c">
+    <span class="kbd-row">
+      <kbd>R</kbd> RATE
+      <kbd>I</kbd> INVERT
+      <kbd>SHUFFLE</kbd> TAB
+    </span>
+  </div>
+  <div class="bar-r">
+    <span id="hits">000 SIGNALS</span>
+  </div>
+</footer>
+
+<!-- BOTTOM MARQUEE -->
+<div class="marq marq-bottom" aria-hidden="true">
+  <div class="marq-track reverse">
+    <span>NEW EDITION 2026 · REVISED · LIMITED · GARE JESSE · NEW EDITION 2026 · REVISED · LIMITED · GARE JESSE ·&nbsp;</span>
+    <span>NEW EDITION 2026 · REVISED · LIMITED · GARE JESSE · NEW EDITION 2026 · REVISED · LIMITED · GARE JESSE ·&nbsp;</span>
+  </div>
+</div>
 
 <script src="landing.js"></script>
 </body>
