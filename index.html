@@ -9,27 +9,42 @@
 <link rel="apple-touch-icon" href="logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,500;0,900;1,900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,500;0,900;1,900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="landing.css" />
 </head>
 <body>
 
+<!-- Invert wipe overlay -->
+<div class="wipe" id="wipe" aria-hidden="true"></div>
+
 <header class="top">
-  <a href="/" class="mark">GARE JESSE</a>
-  <a href="rate-card.html" class="link">RATE CARD →</a>
+  <a href="/" class="mark" data-hover>
+    <img src="logo.png" alt="Gare Jesse" class="logo-img" />
+    <span>GARE JESSE</span>
+  </a>
+  <a href="rate-card.html" class="link hold-link" id="holdLink" data-hover>
+    <span class="link-fill"></span>
+    <span class="link-text">
+      <span class="lt-default">RATE CARD →</span>
+      <span class="lt-holding">HOLD TO ENTER</span>
+    </span>
+  </a>
 </header>
 
 <main class="page">
-  <h1 class="big">
-    <span>GARE</span>
-    <span><em>JESSE</em></span>
-    <span>PRODUCTIONS<i>.</i></span>
+  <h1 class="big" id="big">
+    <span class="row" data-text="GARE">GARE</span>
+    <span class="row italic" data-text="JESSE">JESSE</span>
+    <span class="row small" data-text="PRODUCTIONS.">PRODUCTIONS<i>.</i></span>
   </h1>
+  <p class="hint">
+    <span class="hint-l">MOVE CURSOR · CLICK TO INVERT · HOLD <em>RATE CARD</em></span>
+  </p>
 </main>
 
 <footer class="bottom">
   <span>© 2026</span>
-  <span>NAIROBI</span>
+  <span>NAIROBI · <span id="clock">—</span></span>
   <span>@GAREJOSHUAJESSE</span>
 </footer>
 
