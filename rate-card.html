@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gare Jesse Productions — Rate Card 2026</title>
+<meta name="description" content="Cinematography, photography, and branded content. Nairobi, Kenya. Rate card valid Jan–Dec 2026." />
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="apple-touch-icon" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,700&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="grain"></div>
+<div class="cam-cursor" id="cursor" aria-hidden="true">
+  <svg viewBox="0 0 48 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round">
+    <path d="M6 10 L14 10 L17 5 L31 5 L34 10 L42 10 Q46 10 46 14 L46 28 Q46 32 42 32 L6 32 Q2 32 2 28 L2 14 Q2 10 6 10 Z"/>
+    <circle cx="24" cy="21" r="8"/>
+    <circle cx="24" cy="21" r="4.5"/>
+    <circle cx="39" cy="14" r="1" fill="currentColor"/>
+  </svg>
+  <span class="cam-rec"></span>
+</div>
+<div class="cam-bracket" id="cursorRing" aria-hidden="true">
+  <span class="br tl"></span><span class="br tr"></span>
+  <span class="br bl"></span><span class="br br2"></span>
+</div>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="brand" data-hover>
+      <img src="logo.png" alt="Gare Jesse" class="brand-mark" />
+      <span class="brand-name">GARE&nbsp;JESSE</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#photography" data-hover>01 Photo</a></li>
+      <li><a href="#videography" data-hover>02 Video</a></li>
+      <li><a href="#hybrid" data-hover>03 Hybrid</a></li>
+      <li><a href="#addons" data-hover>04 Add-ons</a></li>
+      <li><a href="#retainers" data-hover>05 Retainers</a></li>
+      <li><a href="#glance" data-hover>06 Glance</a></li>
+    </ul>
+    <div class="currency-picker" id="currencyPicker">
+      <button class="cur-trigger" id="curTrigger" data-hover aria-haspopup="listbox" aria-expanded="false">
+        <span class="cur-code" id="curCode">KES</span>
+        <span class="cur-rate" id="curRate">1.00</span>
+        <svg class="cur-chev" viewBox="0 0 12 8" width="10" height="7" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 1.5 L6 6.5 L11 1.5"/></svg>
+      </button>
+      <ul class="cur-menu" id="curMenu" role="listbox" hidden></ul>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <!-- Cinematic letterbox bars -->
+  <div class="letterbox letterbox-top" aria-hidden="true"></div>
+  <div class="letterbox letterbox-bottom" aria-hidden="true"></div>
+
+  <!-- Cursor-reactive spotlight -->
+  <div class="hero-spot" id="heroSpot" aria-hidden="true"></div>
+
+  <!-- Viewfinder corner brackets -->
+  <div class="viewfinder" aria-hidden="true">
+    <span class="vf tl"></span><span class="vf tr"></span>
+    <span class="vf bl"></span><span class="vf br"></span>
+  </div>
+
+  <!-- HUD readouts (like a camera display) -->
+  <div class="hero-hud hud-tl">
+    <span class="hud-label">Location</span>
+    <span class="hud-val">Nairobi · <span id="heroClock">—:—:—</span></span>
+  </div>
+  <div class="hero-hud hud-tr">
+    <span class="hud-label">Rate Range</span>
+    <span class="hud-val">KES 12K → 250K+</span>
+  </div>
+  <div class="hero-hud hud-bl">
+    <span class="hud-label">Frame</span>
+    <span class="hud-val"><span id="frameCount">001</span> / ∞</span>
+  </div>
+  <div class="hero-hud hud-br">
+    <span class="hud-label">ISO</span>
+    <span class="hud-val">100 · f/2.8 · 1/125</span>
+  </div>
+
+  <div class="hero-meta">
+    <span>STANDARD RATE CARD</span>
+    <span class="dot">·</span>
+    <span>EDITION 2026 · REVISED</span>
+    <span class="dot">·</span>
+    <span>EFFECTIVE JANUARY 2026</span>
+  </div>
+
+  <div class="hero-title-wrap" id="heroTitleWrap">
+    <h1 class="hero-title" id="heroTitle">
+      <span class="line" data-split="Gare Jesse">Gare Jesse</span>
+      <span class="line italic" data-split="Productions.">Productions.</span>
+    </h1>
+  </div>
+
+  <!-- Rotating discipline display -->
+  <div class="hero-disciplines">
+    <div class="disc-stage" id="discStage">
+      <span class="disc-word is-active" data-idx="0">Cinematography.</span>
+      <span class="disc-word" data-idx="1">Photography.</span>
+      <span class="disc-word" data-idx="2">Branded Content.</span>
+    </div>
+    <ul class="disc-pills" id="discPills">
+      <li><button class="disc-pill is-active" data-disc="0" data-hover><em>01</em> Cinematography</button></li>
+      <li><button class="disc-pill" data-disc="1" data-hover><em>02</em> Photography</button></li>
+      <li><button class="disc-pill" data-disc="2" data-hover><em>03</em> Branded Content</button></li>
+    </ul>
+  </div>
+
+  <blockquote class="hero-quote">
+    <span>"We don't price by the hour.</span>
+    <span>We price by <em>what the work is worth</em>."</span>
+  </blockquote>
+
+  <a href="#photography" class="scroll-cue" id="scrollCue" data-hover>
+    <span>CAPTURE</span>
+    <span class="cue-line"></span>
+  </a>
+
+  <!-- Shutter flash overlay -->
+  <div class="shutter-flash" id="shutterFlash" aria-hidden="true"></div>
+</header>
+
+<main>
+
+<!-- PHOTOGRAPHY -->
+<section class="section" id="photography" data-section="01">
+  <div class="section-head">
+    <span class="section-num">01</span>
+    <div class="section-title-wrap">
+      <h2 class="section-title">Photography<span class="slash"> / </span><em>Still &amp; Print</em></h2>
+      <p class="section-lede">All packages include full post-production editing, colour grading, and delivery via private online gallery. RAW files available on request at additional cost.</p>
+    </div>
+  </div>
+
+  <div class="cards" data-price-group="photo"></div>
+</section>
+
+<!-- VIDEOGRAPHY -->
+<section class="section alt" id="videography" data-section="02">
+  <div class="section-head">
+    <span class="section-num">02</span>
+    <div class="section-title-wrap">
+      <h2 class="section-title">Videography<span class="slash"> / </span><em>Motion &amp; Film</em></h2>
+      <p class="section-lede">Shot on Canon Cinema line. All video packages include original sound design, colour grade, and licensed background music unless otherwise specified.</p>
+    </div>
+  </div>
+  <div class="cards" data-price-group="video"></div>
+</section>
+
+<!-- HYBRID -->
+<section class="section" id="hybrid" data-section="03">
+  <div class="section-head">
+    <span class="section-num">03</span>
+    <div class="section-title-wrap">
+      <h2 class="section-title">Hybrid<span class="slash"> / </span><em>Photo + Video</em></h2>
+      <p class="section-lede">Bundled packages save 15–20% vs booking separately. One team, one brief, one cohesive visual world.</p>
+    </div>
+  </div>
+  <div class="bundles" data-price-group="bundle"></div>
+</section>
+
+<!-- ADDONS -->
+<section class="section alt" id="addons" data-section="04">
+  <div class="section-head">
+    <span class="section-num">04</span>
+    <div class="section-title-wrap">
+      <h2 class="section-title">Add-ons<span class="slash"> / </span><em>Bolt-on Services</em></h2>
+      <p class="section-lede">Drop them onto any package. Priced in KES. Converted live.</p>
+    </div>
+  </div>
+  <ul class="addons-list" id="addonsList"></ul>
+</section>
+
+<!-- RETAINERS -->
+<section class="section" id="retainers" data-section="05">
+  <div class="section-head">
+    <span class="section-num">05</span>
+    <div class="section-title-wrap">
+      <h2 class="section-title">Retainers<span class="slash"> / </span><em>Ongoing Partnerships</em></h2>
+      <p class="section-lede">For brands that need consistent, premium visual content every month. Retainers secure priority scheduling and lower effective day rates. Minimum 3-month commitment.</p>
+    </div>
+  </div>
+  <div class="retainers" id="retainersGrid"></div>
+</section>
+
+<!-- AT A GLANCE -->
+<section class="section alt" id="glance" data-section="06">
+  <div class="section-head">
+    <span class="section-num">06</span>
+    <div class="section-title-wrap">
+      <h2 class="section-title">At a Glance<span class="slash"> / </span><em>Price Range Overview</em></h2>
+      <p class="section-lede">The whole card in four numbers. Hover each tile.</p>
+    </div>
+  </div>
+  <div class="glance-grid">
+    <div class="glance-tile" data-hover>
+      <span class="glance-label">Photography</span>
+      <span class="glance-range"><em>12K</em> — <em>95K</em></span>
+      <span class="glance-unit">KES per project</span>
+    </div>
+    <div class="glance-tile" data-hover>
+      <span class="glance-label">Videography</span>
+      <span class="glance-range"><em>18K</em> — <em>250K+</em></span>
+      <span class="glance-unit">KES per project</span>
+    </div>
+    <div class="glance-tile" data-hover>
+      <span class="glance-label">Hybrid Packages</span>
+      <span class="glance-range"><em>28K</em> — <em>180K+</em></span>
+      <span class="glance-unit">KES bundled</span>
+    </div>
+    <div class="glance-tile" data-hover>
+      <span class="glance-label">Monthly Retainer</span>
+      <span class="glance-range"><em>40K</em> — <em>Custom</em></span>
+      <span class="glance-unit">KES per month</span>
+    </div>
+  </div>
+</section>
+
+<!-- BUILDER -->
+<section class="section builder" id="builder">
+  <div class="section-head">
+    <span class="section-num">07</span>
+    <div class="section-title-wrap">
+      <h2 class="section-title">Build a Quote<span class="slash"> / </span><em>Your Basket</em></h2>
+      <p class="section-lede">Tap any <span class="kbd">+</span> on a service above. Watch the total tally here.</p>
+    </div>
+  </div>
+  <div class="basket">
+    <ul class="basket-list" id="basketList">
+      <li class="basket-empty">Nothing selected yet. Pick a service above — or just stare at the numbers.</li>
+    </ul>
+    <div class="basket-total">
+      <div>
+        <span class="basket-label">Subtotal</span>
+        <span class="basket-hint">+ 16% VAT where applicable</span>
+      </div>
+      <div class="basket-amounts">
+        <span class="basket-kes" id="basketKes">KES 0</span>
+        <span class="basket-usd" id="basketUsd">≈ USD 0</span>
+      </div>
+    </div>
+    <div class="basket-actions">
+      <button class="btn ghost" id="basketClear" data-hover>Clear</button>
+      <a class="btn" id="basketEmail" href="mailto:hello@garejesse.com" data-hover>Email this brief</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="foot-title">
+    <span class="reveal">Every frame is a decision.</span>
+    <span class="reveal italic">We make them count.</span>
+  </div>
+  <div class="foot-grid">
+    <div>
+      <span class="foot-label">Book</span>
+      <a href="mailto:hello@garejesse.com" data-hover>hello@garejesse.com</a>
+      <a href="tel:+2540758684152" data-hover>+254 0758 684 152</a>
+    </div>
+    <div>
+      <span class="foot-label">Follow</span>
+      <a href="https://instagram.com/garejoshuajesse" target="_blank" rel="noopener" data-hover>Instagram <em>@garejoshuajesse</em></a>
+      <a href="https://linkedin.com/in/garejoshuajesse" target="_blank" rel="noopener" data-hover>LinkedIn <em>@garejoshuajesse</em></a>
+      <a href="https://x.com/garejoshuajesse" target="_blank" rel="noopener" data-hover>X <em>@garejoshuajesse</em></a>
+      <a href="https://youtube.com/@garejoshuajesse" target="_blank" rel="noopener" data-hover>YouTube <em>@garejoshuajesse</em></a>
+      <a href="https://twitch.tv/garejoshuajesse" target="_blank" rel="noopener" data-hover>Twitch <em>@garejoshuajesse</em></a>
+      <a href="https://vimeo.com/garejoshuajesse" target="_blank" rel="noopener" data-hover>Vimeo <em>@garejoshuajesse</em></a>
+      <span class="foot-loc">Nairobi, Kenya</span>
+    </div>
+    <div>
+      <span class="foot-label">Note</span>
+      <p>Rate Card 2026 · Revised Edition. Supersedes all previous versions. All prices exclusive of 16% VAT. USD indicative at KES 129 / USD.</p>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Gare Jesse Productions</span>
+    <span class="marquee" id="marquee"></span>
+    <span>Revised Edition</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
