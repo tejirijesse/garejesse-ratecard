@@ -69,28 +69,42 @@ body.invert .wipe{background:var(--bg)}
   display:inline-flex;
   align-items:center;
   gap:12px;
+  transition:transform .35s var(--ease);
 }
+.mark:hover{transform:translateX(4px)}
 .logo-img{
-  width:30px;
-  height:30px;
+  width:32px;
+  height:32px;
   border-radius:6px;
   display:block;
   transition:filter .35s var(--ease),transform .4s var(--ease);
 }
-.mark:hover .logo-img{transform:rotate(-8deg) scale(1.05)}
-.mark span{font-weight:700;letter-spacing:.18em}
+.mark:hover .logo-img{transform:rotate(-8deg) scale(1.08)}
+.mark span{
+  font-family:"Inter",sans-serif;
+  font-weight:900;
+  font-style:italic;
+  font-size:14px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
 
 /* Hold-to-enter link */
 .hold-link{
   position:relative;
-  padding:8px 14px;
+  padding:9px 16px;
   border:1.5px solid currentColor;
   overflow:hidden;
   isolation:isolate;
-  font-weight:700;
+  font-family:"Inter",sans-serif;
+  font-style:italic;
+  font-weight:900;
+  font-size:13px;
   letter-spacing:.18em;
-  transition:color .25s,border-color .25s;
+  text-transform:uppercase;
+  transition:color .25s,border-color .25s,transform .35s var(--ease);
 }
+.hold-link:hover{transform:translateX(-4px)}
 .link-fill{
   position:absolute;
   inset:0;
