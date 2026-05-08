@@ -25,9 +25,9 @@ i{font-style:normal}
 img{display:block;max-width:100%}
 
 /* ============== CAMERA CURSOR ============== */
-.cam-cursor{position:fixed;top:0;left:0;width:46px;height:34px;pointer-events:none;z-index:9999;color:var(--ink);transform:translate(-50%,-50%);transition:transform .25s var(--ease),opacity .2s}
-.cam-cursor svg{width:100%;height:100%;display:block}
-.cam-cursor.hover{transform:translate(-50%,-50%) scale(1.25)}
+.cam-cursor{position:fixed;top:0;left:0;width:46px;height:34px;pointer-events:none;z-index:9999;color:var(--ink);transform:translate(-50%,-50%);transition:opacity .2s;will-change:transform}
+.cam-cursor svg{width:100%;height:100%;display:block;transform:scale(1);transition:transform .25s var(--ease)}
+.cam-cursor.hover svg{transform:scale(1.25)}
 .cam-cursor svg circle:nth-of-type(2){transition:stroke-width .3s var(--ease)}
 .cam-cursor.hover svg circle:nth-of-type(2){stroke-width:2.5}
 .cam-rec{position:absolute;top:-4px;right:-4px;width:8px;height:8px;border-radius:50%;background:var(--ink);opacity:0}

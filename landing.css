@@ -30,10 +30,10 @@ body{
 }
 a,button{cursor:none}
 
-/* Camera cursor */
-.cam-cursor{position:fixed;top:0;left:0;width:44px;height:33px;pointer-events:none;z-index:9999;color:var(--ink);transform:translate(-50%,-50%);transition:transform .25s var(--ease),color .2s,opacity .2s}
-.cam-cursor svg{width:100%;height:100%;display:block}
-.cam-cursor.hover{transform:translate(-50%,-50%) scale(1.2)}
+/* Camera cursor — wrapper follows mouse instantly, only inner SVG scales */
+.cam-cursor{position:fixed;top:0;left:0;width:44px;height:33px;pointer-events:none;z-index:9999;color:var(--ink);transform:translate(-50%,-50%);transition:opacity .2s,color .2s;will-change:transform}
+.cam-cursor svg{width:100%;height:100%;display:block;transform:scale(1);transition:transform .25s var(--ease)}
+.cam-cursor.hover svg{transform:scale(1.25)}
 .cam-cursor svg circle:nth-of-type(2){transition:stroke-width .3s var(--ease)}
 .cam-cursor.hover svg circle:nth-of-type(2){stroke-width:2.4}
 .cam-rec{position:absolute;top:-4px;right:-4px;width:8px;height:8px;border-radius:50%;background:var(--ink);opacity:0;transition:opacity .25s}
@@ -99,7 +99,9 @@ body.invert .wipe{background:var(--bg)}
 }
 .top-links .link:not(.hold-link){
   padding:9px 16px;
-  border:1.5px solid currentColor;
+  background:var(--ink);
+  color:var(--bg);
+  border:1.5px solid var(--ink);
   font-family:"Inter",sans-serif;
   font-style:italic;
   font-weight:900;
@@ -109,11 +111,19 @@ body.invert .wipe{background:var(--bg)}
   transition:background .25s,color .25s,transform .35s var(--ease);
 }
 .top-links .link:not(.hold-link):hover{
-  background:currentColor;
+  background:var(--bg);
+  color:var(--ink);
   transform:translateX(-3px);
 }
-.top-links .link:not(.hold-link):hover{color:var(--bg)}
-body.invert .top-links .link:not(.hold-link):hover{color:var(--ink)}
+body.invert .top-links .link:not(.hold-link){
+  background:var(--bg);
+  color:var(--ink);
+  border-color:var(--bg);
+}
+body.invert .top-links .link:not(.hold-link):hover{
+  background:var(--ink);
+  color:var(--bg);
+}
 .mark{
   display:inline-flex;
   align-items:center;
@@ -142,7 +152,9 @@ body.invert .top-links .link:not(.hold-link):hover{color:var(--ink)}
 .hold-link{
   position:relative;
   padding:9px 16px;
-  border:1.5px solid currentColor;
+  background:var(--ink);
+  color:var(--bg);
+  border:1.5px solid var(--ink);
   overflow:hidden;
   isolation:isolate;
   font-family:"Inter",sans-serif;
@@ -154,15 +166,17 @@ body.invert .top-links .link:not(.hold-link):hover{color:var(--ink)}
   transition:color .25s,border-color .25s,transform .35s var(--ease);
 }
 .hold-link:hover{transform:translateX(-4px)}
+body.invert .hold-link{background:var(--bg);color:var(--ink);border-color:var(--bg)}
 .link-fill{
   position:absolute;
   inset:0;
-  background:currentColor;
+  background:var(--bg);
   transform:scaleX(0);
   transform-origin:left;
   transition:transform .8s linear;
   z-index:-1;
 }
+body.invert .link-fill{background:var(--ink)}
 .hold-link.holding .link-fill{
   transform:scaleX(1);
   transition-duration:.85s;
@@ -173,8 +187,8 @@ body.invert .top-links .link:not(.hold-link):hover{color:var(--ink)}
 .lt-holding{transform:translateY(110%)}
 .hold-link.holding .lt-default{transform:translateY(-110%)}
 .hold-link.holding .lt-holding{transform:translateY(0)}
-.hold-link.holding{color:var(--bg)}
-body.invert .hold-link.holding{color:var(--ink)}
+.hold-link.holding{color:var(--ink)}
+body.invert .hold-link.holding{color:var(--bg)}
 .hold-link:hover{border-color:currentColor}
 
 /* ===== Big hero text ===== */
