@@ -97,8 +97,13 @@ body.invert .wipe{background:var(--bg)}
   align-items:center;
   gap:10px;
 }
-.top-links .link:not(.hold-link){
-  padding:9px 16px;
+/* Shared pill base — applies to BOTH WORK and RATE CARD */
+.top-links .link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:38px;
+  padding:0 16px;
   background:var(--ink);
   color:var(--bg);
   border:1.5px solid var(--ink);
@@ -106,16 +111,18 @@ body.invert .wipe{background:var(--bg)}
   font-style:italic;
   font-weight:900;
   font-size:13px;
+  line-height:1;
   letter-spacing:.18em;
   text-transform:uppercase;
   transition:background .25s,color .25s,transform .35s var(--ease);
+  box-sizing:border-box;
 }
 .top-links .link:not(.hold-link):hover{
   background:var(--bg);
   color:var(--ink);
   transform:translateX(-3px);
 }
-body.invert .top-links .link:not(.hold-link){
+body.invert .top-links .link{
   background:var(--bg);
   color:var(--ink);
   border-color:var(--bg);
@@ -149,24 +156,9 @@ body.invert .top-links .link:not(.hold-link):hover{
 }
 
 /* Hold-to-enter link */
-.hold-link{
-  position:relative;
-  padding:9px 16px;
-  background:var(--ink);
-  color:var(--bg);
-  border:1.5px solid var(--ink);
-  overflow:hidden;
-  isolation:isolate;
-  font-family:"Inter",sans-serif;
-  font-style:italic;
-  font-weight:900;
-  font-size:13px;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  transition:color .25s,border-color .25s,transform .35s var(--ease);
-}
+/* hold-link only adds the hold-fill behaviour on top of the shared pill */
+.hold-link{position:relative;overflow:hidden;isolation:isolate}
 .hold-link:hover{transform:translateX(-4px)}
-body.invert .hold-link{background:var(--bg);color:var(--ink);border-color:var(--bg)}
 .link-fill{
   position:absolute;
   inset:0;
@@ -181,8 +173,8 @@ body.invert .link-fill{background:var(--ink)}
   transform:scaleX(1);
   transition-duration:.85s;
 }
-.link-text{display:inline-block;position:relative;height:1em;line-height:1;overflow:hidden;min-width:9.5em;vertical-align:middle}
-.lt-default,.lt-holding{display:block;position:absolute;top:0;left:0;right:0;transition:transform .35s var(--ease);white-space:nowrap}
+.link-text{display:inline-flex;align-items:center;position:relative;height:1em;line-height:1;overflow:hidden;min-width:9em}
+.lt-default,.lt-holding{display:flex;align-items:center;position:absolute;inset:0;transition:transform .35s var(--ease);white-space:nowrap;justify-content:center}
 .lt-default{transform:translateY(0)}
 .lt-holding{transform:translateY(110%)}
 .hold-link.holding .lt-default{transform:translateY(-110%)}
