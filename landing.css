@@ -90,7 +90,30 @@ body.invert .wipe{background:var(--bg)}
   letter-spacing:.2em;
   position:relative;
   z-index:5;
+  gap:14px;
 }
+.top-links{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.top-links .link:not(.hold-link){
+  padding:9px 16px;
+  border:1.5px solid currentColor;
+  font-family:"Inter",sans-serif;
+  font-style:italic;
+  font-weight:900;
+  font-size:13px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  transition:background .25s,color .25s,transform .35s var(--ease);
+}
+.top-links .link:not(.hold-link):hover{
+  background:currentColor;
+  transform:translateX(-3px);
+}
+.top-links .link:not(.hold-link):hover{color:var(--bg)}
+body.invert .top-links .link:not(.hold-link):hover{color:var(--ink)}
 .mark{
   display:inline-flex;
   align-items:center;
