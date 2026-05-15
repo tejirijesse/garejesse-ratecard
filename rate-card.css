@@ -350,3 +350,73 @@ img{display:block;max-width:100%}
 .commission-sub{font-family:var(--f);font-weight:400;font-size:clamp(16px,1.5vw,20px);line-height:1.5;margin:28px 0 40px;max-width:560px}
 .commission-btn{display:inline-flex;align-items:center;padding:20px 30px;background:var(--ink);color:var(--bg);border:2px solid var(--ink);font-family:var(--f);font-style:italic;font-weight:900;font-size:clamp(15px,1.7vw,22px);letter-spacing:.06em;text-transform:lowercase;transition:background .3s,color .3s,transform .3s var(--ease)}
 .commission-btn:hover{background:var(--bg);color:var(--ink);transform:translateX(6px)}
+
+/* ===== Rate-card: intro ===== */
+.rc-intro{font-family:var(--f);font-weight:400;font-size:clamp(18px,1.5vw,20px);line-height:1.7;max-width:760px;margin:0 auto 22px}
+.rc-intro:last-child{margin-bottom:0}
+#intro.section{padding-top:110px;padding-bottom:60px}
+
+/* ===== Packages ===== */
+.pkgs{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:start}
+.pkg{position:relative;display:flex;flex-direction:column;border:2px solid var(--ink);background:var(--bg);color:var(--ink);padding:36px 30px;min-height:100%;transition:transform .35s var(--ease)}
+.pkg:hover{transform:translateY(-6px)}
+.pkg.featured{background:var(--ink);color:var(--bg);transform:translateY(-10px)}
+.pkg.featured:hover{transform:translateY(-16px)}
+.pkg-pop{position:absolute;top:-13px;left:30px;background:var(--bg);color:var(--ink);border:2px solid var(--ink);font-family:var(--m);font-weight:800;font-size:10px;letter-spacing:.24em;text-transform:uppercase;padding:5px 12px}
+.pkg.featured .pkg-pop{background:var(--ink);color:var(--bg)}
+.pkg-name{font-family:var(--f);font-style:italic;font-weight:900;font-size:clamp(28px,3vw,40px);letter-spacing:-.03em;text-transform:uppercase;line-height:1;margin-bottom:10px}
+.pkg-tag{font-family:var(--f);font-weight:500;font-size:14px;line-height:1.45;opacity:.7;margin-bottom:26px}
+.pkg-price{font-family:var(--f);font-style:italic;font-weight:900;font-size:clamp(46px,5vw,68px);letter-spacing:-.045em;line-height:1}
+.pkg-price span{font-family:var(--m);font-style:normal;font-weight:600;font-size:14px;letter-spacing:.06em;opacity:.65;margin-left:8px;text-transform:lowercase}
+.pkg-min{font-family:var(--m);font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.7;margin:10px 0 22px;padding-bottom:22px;border-bottom:1.5px solid currentColor}
+.pkg-blurb{font-family:var(--f);font-weight:400;font-size:15px;line-height:1.6;margin-bottom:24px}
+.pkg-h{display:block;font-family:var(--m);font-weight:800;font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:.6;margin-bottom:14px}
+.pkg-list{list-style:none;margin:0 0 24px;padding:0}
+.pkg-list li{font-family:var(--f);font-weight:400;font-size:15px;line-height:1.5;padding:9px 0 9px 18px;position:relative;border-bottom:1px solid currentColor}
+.pkg-list li::before{content:"—";position:absolute;left:0;opacity:.55}
+.pkg-over,.pkg-fit{font-family:var(--f);font-weight:400;font-size:14px;line-height:1.55;margin-bottom:16px}
+.pkg-fit{opacity:.78;margin-top:auto}
+.pkg-over strong,.pkg-fit strong{font-weight:800}
+.pkg-cta{margin-top:8px;padding:16px;text-align:center;border:2px solid currentColor;font-family:var(--f);font-style:italic;font-weight:900;font-size:13px;letter-spacing:.06em;transition:background .3s,color .3s}
+.pkg-cta:hover{background:currentColor}
+.pkg-cta:hover{color:var(--bg)}
+.pkg.featured .pkg-cta:hover{color:var(--ink)}
+@media (max-width:980px){.pkgs{grid-template-columns:1fr;gap:30px}.pkg,.pkg.featured{transform:none}.pkg:hover,.pkg.featured:hover{transform:translateY(-4px)}}
+
+/* ===== Comparison table ===== */
+.cmp-wrap{border:2px solid var(--ink)}
+.cmp{width:100%;border-collapse:collapse;font-family:var(--f)}
+.cmp th,.cmp td{padding:16px 18px;text-align:left;border-bottom:1.5px solid var(--ink);font-size:15px}
+.cmp thead th{font-family:var(--f);font-style:italic;font-weight:900;font-size:clamp(15px,1.6vw,20px);text-transform:uppercase;letter-spacing:-.01em}
+.cmp thead th:first-child{font-size:11px;font-family:var(--m);font-style:normal;font-weight:700;letter-spacing:.2em;opacity:.6}
+.cmp tbody td:first-child{font-family:var(--m);font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.75}
+.cmp tbody td{font-weight:600}
+.cmp tbody tr:last-child td{border-bottom:none}
+.cmp td+td,.cmp th+th{border-left:1.5px solid var(--ink)}
+@media (max-width:760px){
+  .cmp thead{display:none}
+  .cmp,.cmp tbody,.cmp tr,.cmp td{display:block;width:100%}
+  .cmp tbody tr{border-bottom:2.5px solid var(--ink);padding:6px 0}
+  .cmp tbody tr:last-child{border-bottom:none}
+  .cmp td{border:none!important;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:9px 16px}
+  .cmp td:first-child{background:var(--ink);color:var(--bg);grid-template-columns:1fr;font-size:11px}
+  .cmp td+td::before{content:attr(data-h);font-family:var(--m);font-weight:700;font-size:10px;letter-spacing:.1em;text-transform:uppercase;opacity:.55}
+}
+
+/* ===== Notes (deliverable / travel) ===== */
+.note{max-width:780px;margin:0 0 48px;padding-bottom:40px;border-bottom:1.5px solid var(--ink)}
+.note:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.note h3{font-family:var(--f);font-style:italic;font-weight:900;font-size:clamp(22px,2.4vw,32px);letter-spacing:-.02em;text-transform:uppercase;margin-bottom:18px;line-height:1.05}
+.note p{font-family:var(--f);font-weight:400;font-size:clamp(16px,1.35vw,18px);line-height:1.68;margin-bottom:16px}
+.note p:last-child{margin-bottom:0}
+.note strong{font-weight:800}
+
+/* ===== FAQ accordion ===== */
+.faq{border-top:2px solid var(--ink);max-width:900px}
+.faq-i{border-bottom:1.5px solid var(--ink)}
+.faq-i summary{list-style:none;cursor:none;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:26px 6px;font-family:var(--f);font-style:italic;font-weight:900;font-size:clamp(18px,2vw,26px);letter-spacing:-.015em;text-transform:uppercase}
+.faq-i summary::-webkit-details-marker{display:none}
+.faq-i summary::after{content:"+";font-family:var(--m);font-style:normal;font-weight:400;font-size:26px;line-height:1;transition:transform .3s var(--ease)}
+.faq-i[open] summary::after{transform:rotate(45deg)}
+.faq-i p{font-family:var(--f);font-weight:400;font-size:clamp(16px,1.35vw,18px);line-height:1.68;max-width:740px;padding:0 6px 28px}
+@media (max-width:768px){.faq-i summary{padding:20px 4px}.faq-i p{padding:0 4px 22px}}

@@ -140,3 +140,7 @@ img{display:block;max-width:100%}
 /* ============== KINETIC primitives ============== */
 .kx{display:inline-block;opacity:.3}
 [data-boot]{visibility:hidden}
+
+/* Inline link in essay body */
+.inline-link{font-weight:900;font-style:italic;border-bottom:2px solid currentColor;padding-bottom:1px;transition:opacity .25s}
+.inline-link:hover{opacity:.6}
