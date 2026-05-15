@@ -278,11 +278,11 @@ function renderBasket(){
   kes.textContent = currency==="KES"?fmtKES(total):fmtUSD(total);
   usd.textContent = currency==="KES"?`≈ ${fmtUSD(total)}`:`≈ ${fmtKES(total)}`;
   const body = encodeURIComponent(
-    "Hi Gare Jesse Productions,\n\nI'd like to brief you on this package:\n\n" +
+    "Hi Gare Jesse Production,\n\nI'd like to brief you on this package:\n\n" +
     [...basket.values()].map(i=>`• ${i.title||i.name} — ${fmtKES(i.price)}`).join("\n") +
     `\n\nSubtotal: ${fmtKES(total)} (≈ ${fmtUSD(total)})\n\nBest,`
   );
-  email.href = `mailto:bookings@garejesse.com?subject=${encodeURIComponent("Project brief — Gare Jesse Productions")}&body=${body}`;
+  email.href = `mailto:bookings@garejesse.com?subject=${encodeURIComponent("Project brief — Gare Jesse Production")}&body=${body}`;
 
   list.querySelectorAll("[data-remove]").forEach(btn=>{
     btn.addEventListener("click",()=>toggleBasket(btn.dataset.remove));
