@@ -173,9 +173,9 @@ body.invert .top-links .link:not(.hold-link):hover{
 }
 .mark:hover{transform:translateX(4px)}
 .logo-img{
-  width:32px;
-  height:32px;
-  border-radius:6px;
+  width:42px;
+  height:42px;
+  border-radius:8px;
   display:block;
   transition:filter .35s var(--ease),transform .4s var(--ease);
 }
@@ -324,7 +324,7 @@ body.invert .hold-link.holding{color:var(--bg)}
 @media (max-width:640px){
   .top{padding:16px 20px;font-size:10px;letter-spacing:.15em}
   .mark span{font-size:11px}
-  .logo-img{width:26px;height:26px}
+  .logo-img{width:36px;height:36px}
   .page{padding:0 20px}
   .big{font-size:clamp(64px,22vw,160px)}
   .hint{font-size:9px;letter-spacing:.15em}
