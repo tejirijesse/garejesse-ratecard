@@ -1,0 +1,124 @@
+/* ============== TOKENS ============== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#ffffff;
+  --ink:#000000;
+  --mut:#000000;
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --f:"Inter",system-ui,sans-serif;
+  --m:"JetBrains Mono",monospace;
+}
+html{scroll-behavior:smooth}
+html,body{background:var(--bg);color:var(--ink);font-family:var(--f);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{cursor:none;min-height:100vh}
+a{color:inherit;text-decoration:none}
+strong{font-weight:700}
+em{font-style:italic;font-weight:900}
+img{display:block;max-width:100%}
+
+/* ============== CAMERA CURSOR ============== */
+.cam-cursor{position:fixed;top:0;left:0;width:46px;height:34px;pointer-events:none;z-index:9999;color:var(--ink);transform:translate(-50%,-50%);transition:opacity .2s;will-change:transform}
+.cam-cursor svg{width:100%;height:100%;display:block;transform:scale(1);transition:transform .25s var(--ease)}
+.cam-cursor.hover svg{transform:scale(1.25)}
+.cam-cursor svg circle:nth-of-type(2){transition:stroke-width .3s var(--ease)}
+.cam-cursor.hover svg circle:nth-of-type(2){stroke-width:2.5}
+.cam-rec{position:absolute;top:-4px;right:-4px;width:8px;height:8px;border-radius:50%;background:var(--ink);opacity:0}
+.cam-cursor.hover .cam-rec{opacity:1;animation:rec 1s ease-in-out infinite}
+@keyframes rec{50%{opacity:.3}}
+.cam-cursor.click{animation:click .18s ease-out}
+@keyframes click{0%{opacity:.3}}
+.cam-bracket{position:fixed;top:0;left:0;width:84px;height:64px;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:0;transition:opacity .35s var(--ease),width .35s var(--ease),height .35s var(--ease)}
+.cam-bracket.hover{opacity:1;width:140px;height:104px}
+.cam-bracket span{position:absolute;width:14px;height:14px;border:1.5px solid var(--ink)}
+.cam-bracket span:nth-child(1){top:0;left:0;border-right:none;border-bottom:none}
+.cam-bracket span:nth-child(2){top:0;right:0;border-left:none;border-bottom:none}
+.cam-bracket span:nth-child(3){bottom:0;left:0;border-right:none;border-top:none}
+.cam-bracket span:nth-child(4){bottom:0;right:0;border-left:none;border-top:none}
+@media (max-width:768px){.cam-cursor,.cam-bracket{display:none}body{cursor:auto}a{cursor:pointer}}
+
+/* ============== SCROLL PROGRESS ============== */
+.scroll-prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--ink);z-index:200;transition:width .05s linear}
+
+/* ============== NAV ============== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:blur(14px);border-bottom:2px solid var(--ink);padding:14px 24px;display:flex;justify-content:space-between;align-items:center;gap:18px}
+.brand{display:flex;align-items:center;transition:transform .35s var(--ease)}
+.brand:hover{transform:translateX(3px)}
+.brand img{width:42px;height:42px;border-radius:8px}
+.nav-pills{display:flex;gap:10px;align-items:center}
+.pill{display:inline-flex;align-items:center;height:38px;padding:0 16px;background:var(--ink);color:var(--bg);border:1.5px solid var(--ink);font-style:italic;font-weight:900;font-size:13px;line-height:1;letter-spacing:.16em;text-transform:uppercase;transition:background .25s,color .25s,transform .3s var(--ease)}
+.pill:hover{background:var(--bg);color:var(--ink);transform:translateX(-3px)}
+.pill.active{background:var(--bg);color:var(--ink)}
+.pill.active:hover{background:var(--ink);color:var(--bg)}
+@media (max-width:680px){
+  .nav{padding:12px 16px}
+  .brand img{width:36px;height:36px}
+  .nav-pills .pill{height:34px;padding:0 12px;font-size:11px;letter-spacing:.1em}
+}
+@media (max-width:480px){
+  .nav-pills .pill:not(.active){display:none}
+}
+
+/* ============== ESSAY SHELL ============== */
+.essay{max-width:1100px;margin:0 auto;padding:160px 32px 0}
+@media (max-width:768px){.essay{padding:120px 20px 0}}
+
+/* Masthead */
+.masthead{margin-bottom:120px}
+.kicker{font-family:var(--m);font-weight:700;font-size:12px;letter-spacing:.34em;text-transform:uppercase;margin-bottom:40px}
+.lede{font-family:var(--f);font-weight:900;font-style:italic;line-height:.92;letter-spacing:-.04em;text-transform:uppercase}
+.lede-sm{display:block;font-size:clamp(34px,5vw,68px);font-weight:700;font-style:normal;letter-spacing:-.02em;opacity:.55}
+.lede-lg{display:block;font-size:clamp(56px,12vw,170px)}
+@media (max-width:768px){.masthead{margin-bottom:72px}.kicker{margin-bottom:24px}}
+
+/* ============== CHAPTER ============== */
+.chap{display:grid;grid-template-columns:120px 1fr;gap:48px;align-items:start}
+.chap-num{font-family:var(--f);font-style:italic;font-weight:900;font-size:clamp(28px,3vw,46px);letter-spacing:-.02em;position:sticky;top:120px}
+.chap-body{max-width:680px}
+.chap-title{font-family:var(--f);font-weight:900;font-style:italic;font-size:clamp(30px,4vw,56px);letter-spacing:-.03em;text-transform:uppercase;line-height:1;margin-bottom:36px}
+.chap-body p{font-family:var(--f);font-weight:400;font-size:clamp(17px,1.35vw,20px);line-height:1.72;margin-bottom:24px;color:var(--ink)}
+.chap-body p:last-child{margin-bottom:0}
+.opening{font-family:var(--f)!important;font-weight:500!important;font-size:clamp(22px,2.4vw,32px)!important;line-height:1.4!important;letter-spacing:-.015em;margin-bottom:36px!important}
+.opening em{font-weight:900}
+.chap-body strong{font-weight:700}
+
+@media (max-width:860px){
+  .chap{grid-template-columns:1fr;gap:20px}
+  .chap-num{position:static;font-size:28px}
+}
+
+/* Divider */
+.rule{border:none;border-top:1.5px solid var(--ink);margin:90px 0;opacity:.22}
+@media (max-width:768px){.rule{margin:60px 0}}
+
+/* ============== OFFER BLOCK ============== */
+.offer{border-left:3px solid var(--ink);padding:8px 0 8px 28px;margin:36px 0}
+.offer-name{font-family:var(--f);font-weight:900;font-style:italic;font-size:clamp(24px,2.8vw,38px);letter-spacing:-.025em;text-transform:uppercase;margin-bottom:14px;line-height:1}
+.offer p{margin-bottom:14px}
+.offer-terms{font-family:var(--m)!important;font-weight:500!important;font-size:13px!important;letter-spacing:.12em;text-transform:uppercase;margin-bottom:0!important;margin-top:6px}
+.offer-terms strong{font-weight:700}
+@media (max-width:768px){.offer{padding-left:18px}}
+
+/* ============== FILL-IN PLACEHOLDERS ============== */
+.fill{border:2px dashed var(--ink);padding:24px 26px;margin:28px 0;background:repeating-linear-gradient(45deg,transparent,transparent 9px,rgba(0,0,0,.025) 9px,rgba(0,0,0,.025) 18px)}
+.fill-tag{display:inline-block;font-family:var(--m);font-weight:700;font-size:10px;letter-spacing:.22em;text-transform:uppercase;background:var(--ink);color:var(--bg);padding:5px 10px;margin-bottom:16px}
+.fill p{font-family:var(--m)!important;font-weight:400!important;font-size:13px!important;line-height:1.65!important;color:var(--ink);opacity:.75;margin-bottom:10px!important}
+.fill p:last-child{margin-bottom:0!important}
+.fill.fill-lg{padding:30px 30px}
+.fill-inline{font-family:var(--m);font-weight:700;font-size:.78em;border:1.5px dashed var(--ink);padding:1px 7px;letter-spacing:.1em;vertical-align:baseline}
+
+/* ============== REFRAIN / CLOSE ============== */
+.refrain{margin:120px 0 0;padding:90px 0;border-top:2px solid var(--ink);text-align:left}
+.refrain-line{font-family:var(--f);font-weight:900;font-style:normal;font-size:clamp(48px,11vw,150px);line-height:.86;letter-spacing:-.045em;text-transform:uppercase}
+.refrain-line.italic{font-style:italic}
+.refrain-meta{display:flex;gap:32px;flex-wrap:wrap;margin-top:48px;font-family:var(--m);font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase}
+.refrain-meta a{border-bottom:1.5px solid transparent;padding-bottom:3px;transition:border-color .3s,transform .3s var(--ease)}
+.refrain-meta a:hover{border-color:var(--ink);transform:translateX(4px)}
+@media (max-width:768px){.refrain{margin-top:72px;padding:56px 0}}
+
+/* ============== FOOTER ============== */
+.foot{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:22px 32px;border-top:2px solid var(--ink);font-family:var(--m);font-weight:700;font-size:10px;letter-spacing:.22em;text-transform:uppercase;flex-wrap:wrap}
+@media (max-width:768px){.foot{padding:20px;justify-content:flex-start;gap:16px}}
+
+/* ============== KINETIC primitives ============== */
+.kx{display:inline-block;opacity:.3}
+[data-boot]{visibility:hidden}
