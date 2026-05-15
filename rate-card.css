@@ -92,16 +92,21 @@ img{display:block;max-width:100%}
 .chip{display:inline-flex;align-items:center;padding:8px 14px;border:2px solid var(--ink);font-family:var(--m);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;cursor:none;transition:background .25s,color .25s,transform .25s var(--ease)}
 .chip:hover{background:var(--ink);color:var(--bg);transform:translateY(-3px)}
 .hero-title{font-family:var(--f);font-weight:900;font-style:italic;font-size:clamp(72px,17vw,240px);line-height:.84;letter-spacing:-.045em;text-transform:uppercase;display:flex;flex-direction:column;margin-bottom:48px;cursor:none}
-.hero-title .t-line{display:block;opacity:0;transform:translateY(50px);animation:up 1s var(--ease) forwards;transition:transform .4s var(--ease),font-style .3s var(--ease)}
-.hero-title .t-line:nth-child(1){animation-delay:.1s}
-.hero-title .t-line:nth-child(2){animation-delay:.25s}
-.hero-title .t-line:nth-child(3){animation-delay:.4s;font-size:.5em;letter-spacing:-.025em;margin-top:.18em}
+.hero-title .t-line{display:block;transform-origin:left center;will-change:transform;transition:transform .12s linear}
+.hero-title .t-line:nth-child(3){font-size:.5em;letter-spacing:-.025em;margin-top:.18em}
 .hero-title .italic{font-style:italic}
 .hero-title .small{font-size:.5em}
-.hero-title .t-line:hover{transform:translateX(14px) translateY(0)}
-.hero-title .t-line:not(.italic):hover{font-style:italic}
-.hero-title .italic:hover{font-style:normal}
+.hero-title .kline{display:inline-block;min-height:.84em}
 @keyframes up{to{opacity:1;transform:translateY(0)}}
+
+/* ===== KINETIC primitives ===== */
+.kx{display:inline-block;opacity:.3}
+.kline .kx,.section-title .kx,.g-range .kx{font-style:inherit}
+.krise{display:inline-block;opacity:0;transform:translateY(115%);animation:krise .7s var(--ease) forwards}
+@keyframes krise{to{opacity:1;transform:translateY(0)}}
+[data-skew]{will-change:transform}
+.section-title[data-skew]{transform-origin:left center}
+.g-range[data-kinetic]{display:inline-block;min-width:5ch}
 
 .hero-quote{font-family:var(--f);font-style:normal;font-size:clamp(15px,1.6vw,20px);font-weight:500;max-width:600px;line-height:1.55;color:var(--ink);margin-bottom:36px}
 .hero-quote em{font-family:var(--f);font-weight:900;font-style:italic;text-transform:uppercase;letter-spacing:-.01em;display:inline-block;cursor:none;transition:background .25s,color .25s,padding .25s}

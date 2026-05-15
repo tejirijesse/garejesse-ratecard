@@ -207,26 +207,52 @@ body.invert .hold-link.holding{color:var(--bg)}
   display:block;
   white-space:nowrap;
   position:relative;
-  opacity:0;
-  transform:translateY(40px);
-  animation:up .9s var(--ease) forwards;
+  transform-origin:left center;
+  will-change:transform;
+  transition:transform .12s linear;
 }
-.big .row:nth-child(1){animation-delay:.1s}
-.big .row:nth-child(2){animation-delay:.25s}
-.big .row:nth-child(3){animation-delay:.4s; font-size:.5em; font-weight:900; letter-spacing:-.02em; margin-top:.15em}
+.big .row:nth-child(3){font-size:.5em; font-weight:900; letter-spacing:-.02em; margin-top:.15em}
 .big .row.italic{font-style:italic}
+.big .kline{display:inline-block;min-height:.85em}
 .big i{font-style:normal;display:inline-block;margin-left:-.05em}
 
-/* Magnetic letters */
-.big .ch{
-  display:inline-block;
-  transform:translate(var(--tx,0px),var(--ty,0px));
-  transition:transform .25s var(--ease);
-  will-change:transform;
-}
-.big .ch[data-space="1"]{margin-right:.18em}
+/* Scramble glyph — slightly hollowed so the decode reads as noise */
+.kx{display:inline-block;opacity:.32;transform:translateY(0)}
+.row.italic .kx,.kline .kx{font-style:inherit}
 
 @keyframes up{to{opacity:1;transform:translateY(0)}}
+
+/* Letter rise-in (data-rise) */
+.krise{display:inline-block;opacity:0;transform:translateY(115%);animation:krise .7s var(--ease) forwards}
+@keyframes krise{to{opacity:1;transform:translateY(0)}}
+
+/* Kinetic word marquee */
+.kmarq{
+  position:absolute;
+  left:0;right:0;bottom:8%;
+  overflow:hidden;
+  pointer-events:none;
+  border-top:1.5px solid currentColor;
+  border-bottom:1.5px solid currentColor;
+  padding:8px 0;
+  opacity:.5;
+}
+.kmarq-track{
+  display:flex;
+  white-space:nowrap;
+  gap:22px;
+  align-items:center;
+  font-family:"JetBrains Mono",monospace;
+  font-style:normal;
+  font-weight:700;
+  font-size:12px;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  animation:kmarq 22s linear infinite;
+  will-change:transform;
+}
+.kmarq-track b{opacity:.4}
+@keyframes kmarq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* Hint line */
 .hint{
@@ -238,9 +264,10 @@ body.invert .hold-link.holding{color:var(--bg)}
   letter-spacing:.2em;
   text-transform:uppercase;
   opacity:0;
-  animation:up 1s var(--ease) forwards 1s;
+  animation:up 1s var(--ease) forwards 1.4s;
 }
 .hint em{font-family:"Inter",sans-serif;font-style:italic;font-weight:900;letter-spacing:0;text-transform:uppercase}
+.hint .hint-l{cursor:none}
 
 /* ===== Bottom bar ===== */
 .bottom{

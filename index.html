@@ -51,22 +51,29 @@
 
 <main class="page">
   <h1 class="big" id="big">
-    <span class="row" data-text="GARE">GARE</span>
-    <span class="row italic" data-text="JESSE">JESSE</span>
-    <span class="row small" data-text="PRODUCTIONS.">PRODUCTIONS<i>.</i></span>
+    <span class="row" data-skew><span class="kline" data-boot="GARE">GARE</span></span>
+    <span class="row italic" data-skew><span class="kline" data-boot="JESSE">JESSE</span></span>
+    <span class="row small" data-skew><span class="kline" data-boot="PRODUCTIONS.">PRODUCTIONS<i>.</i></span></span>
   </h1>
   <p class="hint">
-    <span class="hint-l">MOVE CURSOR · CLICK TO INVERT · HOLD <em>RATE CARD</em></span>
+    <span class="hint-l" data-kx-hover>MOVE CURSOR · CLICK TO INVERT · HOLD <em>RATE CARD</em></span>
   </p>
+  <div class="kmarq" aria-hidden="true">
+    <div class="kmarq-track">
+      <span>CINEMATOGRAPHY</span><b>·</b><span>PHOTOGRAPHY</span><b>·</b><span>BRANDED CONTENT</span><b>·</b><span>DIRECTION</span><b>·</b>
+      <span>CINEMATOGRAPHY</span><b>·</b><span>PHOTOGRAPHY</span><b>·</b><span>BRANDED CONTENT</span><b>·</b><span>DIRECTION</span><b>·</b>
+    </div>
+  </div>
 </main>
 
 <footer class="bottom">
   <span>© 2026</span>
   <span>NAIROBI · <span id="clock">—</span></span>
-  <span>@GAREJOSHUAJESSE</span>
+  <span data-kx-hover>@GAREJOSHUAJESSE</span>
 </footer>
 
 <script src="landing.js"></script>
+<script src="kinetic.js"></script>
 <script src="cursor.js"></script>
 </body>
 </html>
