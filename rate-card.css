@@ -1,9 +1,9 @@
 /* ============== TOKENS ============== */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#ffffff;
-  --ink:#000000;
-  --line:#000000;
+  --bg:#000000;
+  --ink:#ffffff;
+  --line:#ffffff;
   --ease:cubic-bezier(.2,.8,.2,1);
   --f:"Inter",system-ui,sans-serif;
   --m:"JetBrains Mono",monospace;
@@ -75,7 +75,7 @@ img{display:block;max-width:100%}
 .cur-wrap.open .cur-btn svg{transform:rotate(180deg)}
 .cur-menu{position:absolute;top:calc(100% + 8px);right:0;list-style:none;background:var(--bg);border:2px solid var(--ink);min-width:240px;padding:0;z-index:60;animation:drop .3s var(--ease)}
 @keyframes drop{from{opacity:0;transform:translateY(-6px)}}
-.cur-menu li{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:12px 14px;cursor:none;border-bottom:1px solid rgba(0,0,0,.1);transition:background .2s,color .2s}
+.cur-menu li{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:12px 14px;cursor:none;border-bottom:1px solid rgba(255,255,255,.14);transition:background .2s,color .2s}
 .cur-menu li:last-child{border-bottom:none}
 .cur-menu li:hover,.cur-menu li.active{background:var(--ink);color:var(--bg)}
 .cur-menu .opt-code{font-family:var(--m);font-weight:700;letter-spacing:.18em;font-size:11px}

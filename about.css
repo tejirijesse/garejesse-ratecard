@@ -1,9 +1,9 @@
 /* ============== TOKENS ============== */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#ffffff;
-  --ink:#000000;
-  --mut:#000000;
+  --bg:#000000;
+  --ink:#ffffff;
+  --mut:#ffffff;
   --ease:cubic-bezier(.2,.8,.2,1);
   --f:"Inter",system-ui,sans-serif;
   --m:"JetBrains Mono",monospace;
@@ -40,7 +40,7 @@ img{display:block;max-width:100%}
 .scroll-prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--ink);z-index:200;transition:width .05s linear}
 
 /* ============== NAV ============== */
-.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:blur(14px);border-bottom:2px solid var(--ink);padding:14px 24px;display:flex;justify-content:space-between;align-items:center;gap:18px}
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(0,0,0,.86);backdrop-filter:blur(14px);border-bottom:2px solid var(--ink);padding:14px 24px;display:flex;justify-content:space-between;align-items:center;gap:18px}
 .brand{display:flex;align-items:center;transition:transform .35s var(--ease)}
 .brand:hover{transform:translateX(3px)}
 .brand img{width:42px;height:42px;border-radius:8px}
@@ -99,7 +99,7 @@ img{display:block;max-width:100%}
 @media (max-width:768px){.offer{padding-left:18px}}
 
 /* ============== FILL-IN PLACEHOLDERS ============== */
-.fill{border:2px dashed var(--ink);padding:24px 26px;margin:28px 0;background:repeating-linear-gradient(45deg,transparent,transparent 9px,rgba(0,0,0,.025) 9px,rgba(0,0,0,.025) 18px)}
+.fill{border:2px dashed var(--ink);padding:24px 26px;margin:28px 0;background:repeating-linear-gradient(45deg,transparent,transparent 9px,rgba(255,255,255,.05) 9px,rgba(255,255,255,.05) 18px)}
 .fill-tag{display:inline-block;font-family:var(--m);font-weight:700;font-size:10px;letter-spacing:.22em;text-transform:uppercase;background:var(--ink);color:var(--bg);padding:5px 10px;margin-bottom:16px}
 .fill p{font-family:var(--m)!important;font-weight:400!important;font-size:13px!important;line-height:1.65!important;color:var(--ink);opacity:.75;margin-bottom:10px!important}
 .fill p:last-child{margin-bottom:0!important}
