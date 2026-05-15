@@ -1,4 +1,26 @@
-/* Landing — invert wipe, hold-to-enter, clock. Type motion lives in kinetic.js */
+/* Landing — splash, invert wipe, hold-to-enter, clock. Type motion in kinetic.js */
+
+// ===== Brand splash (once per session, click-to-skip, auto-dismiss) =====
+(function () {
+  const splash = document.getElementById("splash");
+  if (!splash) return;
+  if (sessionStorage.getItem("gjp_splash") === "1") {
+    splash.classList.add("gone");
+    splash.remove();
+    return;
+  }
+  let done = false;
+  const dismiss = () => {
+    if (done) return;
+    done = true;
+    sessionStorage.setItem("gjp_splash", "1");
+    splash.classList.add("gone");
+    setTimeout(() => splash.remove(), 600);
+  };
+  splash.addEventListener("click", dismiss);
+  document.addEventListener("keydown", dismiss, { once: true });
+  setTimeout(dismiss, 2200);
+})();
 
 // ===== Live Nairobi clock =====
 const clock = document.getElementById("clock");
