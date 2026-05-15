@@ -262,7 +262,7 @@ function renderBasket(){
     list.innerHTML = '<li class="basket-empty">Nothing selected yet. Pick a service above — or just stare at the numbers.</li>';
     kes.textContent = "KES 0";
     usd.textContent = "≈ USD 0";
-    email.href = "mailto:hello@garejesse.com";
+    email.href = "mailto:bookings@garejesse.com";
     return;
   }
   let total = 0;
@@ -282,7 +282,7 @@ function renderBasket(){
     [...basket.values()].map(i=>`• ${i.title||i.name} — ${fmtKES(i.price)}`).join("\n") +
     `\n\nSubtotal: ${fmtKES(total)} (≈ ${fmtUSD(total)})\n\nBest,`
   );
-  email.href = `mailto:hello@garejesse.com?subject=${encodeURIComponent("Project brief — Gare Jesse Productions")}&body=${body}`;
+  email.href = `mailto:bookings@garejesse.com?subject=${encodeURIComponent("Project brief — Gare Jesse Productions")}&body=${body}`;
 
   list.querySelectorAll("[data-remove]").forEach(btn=>{
     btn.addEventListener("click",()=>toggleBasket(btn.dataset.remove));

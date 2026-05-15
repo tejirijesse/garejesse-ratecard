@@ -244,7 +244,7 @@ function renderBasket() {
     primary.textContent = fmt(0) || `${currency} 0`;
     primary.textContent = `${currency} 0`;
     alt.textContent = `≈ ${currency === "KES" ? "USD" : "KES"} 0`;
-    email.href = "mailto:hello@garejesse.com";
+    email.href = "mailto:bookings@garejesse.com";
     return;
   }
   let total = 0;
@@ -263,7 +263,7 @@ function renderBasket() {
     [...basket.values()].map(i => `• ${i.title || i.name} — ${fmt(i.price, "KES")}`).join("\n") +
     `\n\nSubtotal: ${fmt(total, "KES")} (≈ ${fmt(total, "USD")})\n\nBest,`
   );
-  email.href = `mailto:hello@garejesse.com?subject=${encodeURIComponent("Project brief — Gare Jesse Productions")}&body=${body}`;
+  email.href = `mailto:bookings@garejesse.com?subject=${encodeURIComponent("Project brief — Gare Jesse Productions")}&body=${body}`;
   list.querySelectorAll("[data-rm]").forEach(b => {
     b.addEventListener("click", () => toggleBasket(b.dataset.rm));
   });
