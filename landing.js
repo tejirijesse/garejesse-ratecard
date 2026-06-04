@@ -22,10 +22,10 @@
   setTimeout(dismiss, 2200);
 })();
 
-// ===== Live Nairobi clock =====
+// ===== Live Kigali clock =====
 const clock = document.getElementById("clock");
 function tickClock() {
-  const o = { timeZone: "Africa/Nairobi", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false };
+  const o = { timeZone: "Africa/Kigali", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false };
   if (clock) clock.textContent = new Date().toLocaleTimeString("en-GB", o);
 }
 tickClock(); setInterval(tickClock, 1000);
