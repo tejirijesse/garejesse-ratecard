@@ -48,7 +48,7 @@ const addons = [
   {id:"a7",name:"Voiceover Recording",desc:"Professional VO talent + studio session",price:8000},
   {id:"a8",name:"Extended Usage Licence",desc:"Broadcast, OOH, and paid advertising rights",price:60000},
   {id:"a9",name:"Social Media Management",desc:"Captions, scheduling, 1-week content push",price:10000},
-  {id:"a10",name:"Travel & Accommodation",desc:"Outside Nairobi — quoted per project",price:null,priceLabel:"Quote"},
+  {id:"a10",name:"Travel & Accommodation",desc:"Outside Kigali — quoted per project",price:null,priceLabel:"Quote"},
 ];
 
 const retainers = [
@@ -356,14 +356,14 @@ document.body.addEventListener("click",e=>{
   pills.forEach((p,i)=>p.addEventListener("click",()=>showDisc(i,{manual:true})));
   discTimer = setInterval(autoDisc,3800);
 
-  // Live Nairobi clock (UTC+3)
+  // Live Kigali clock (UTC+2)
   const clockEl = document.getElementById("heroClock");
   function tickClock(){
     const now = new Date();
     const utc = now.getTime() + now.getTimezoneOffset()*60000;
-    const nairobi = new Date(utc + 3*3600000);
+    const kigali = new Date(utc + 2*3600000);
     const pad = n => String(n).padStart(2,"0");
-    clockEl.textContent = `${pad(nairobi.getHours())}:${pad(nairobi.getMinutes())}:${pad(nairobi.getSeconds())}`;
+    clockEl.textContent = `${pad(kigali.getHours())}:${pad(kigali.getMinutes())}:${pad(kigali.getSeconds())}`;
   }
   tickClock();
   setInterval(tickClock,1000);
@@ -415,7 +415,7 @@ document.body.addEventListener("click",e=>{
 
 // ========== Marquee ==========
 const marq = document.getElementById("marquee");
-const loop = "CINEMATOGRAPHY · PHOTOGRAPHY · BRANDED CONTENT · NAIROBI · EST. 2020 · ";
+const loop = "CINEMATOGRAPHY · PHOTOGRAPHY · BRANDED CONTENT · KIGALI · RWANDA · EST. 2020 · ";
 marq.innerHTML = `<span>${loop.repeat(8)}</span>`;
 
 // ========== Scroll progress ==========
